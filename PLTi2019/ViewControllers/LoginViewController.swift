@@ -15,16 +15,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     
-    let homeCV = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "homeCV") as? HomeCollectionViewController
-    
-    
     @IBAction func btnLoginTouch(_ sender: Any) {
         if let name = username.text, let pass = password.text {
             
             Api.shared.login(username: name, password: pass, success: { (deptrai) in
                 print(deptrai)
-            // move to home page
-//                self.navigationController?.pushViewController(self.homeCV!, animated: true)
+                
+                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let home = stboard.instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
+                
+                self.navigationController?.pushViewController(home, animated: true)
+                print("xxx")
             }) { (Error) in
                 print("a du")
             }

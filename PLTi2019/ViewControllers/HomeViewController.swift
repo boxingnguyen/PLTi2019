@@ -2,45 +2,62 @@
 //  HomeViewController.swift
 //  PLTi2019
 //
-//  Created by Quyen Anh on 1/25/19.
+//  Created by Quyen Anh on 2/12/19.
 //  Copyright © 2019 Quyen Anh. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    var arrayBooks:[String] = ["Nha gia kim", "Ngau hung Tran Tien", "Hoang Le nhat thong chi"]
+class HomeViewController: UIViewController {
     
+    @IBOutlet weak var bookCV: UICollectionView!
+    private let reuseIdentifier = "bookCell"
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+    var arrayBooks:[[String]] = [["Nhà giả kim", "Paulo Coelho", "book1"], ["Ngẫu hứng Trần Tiến", "Trần Tiến", "book2"], ["Hoàng Lê thống chí", "Ngô gia văn phái", "book3"], ["Hoàng Lê thống chí", "Ngô gia văn phái", "book3"], ["Hoàng Lê thống chí", "Ngô gia văn phái", "book3"], ["Hoàng Lê thống chí", "Ngô gia văn phái", "book3"], ["Hoàng Lê thống chí", "Ngô gia văn phái", "book3"]]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        let width = (view.frame.size.width - 30) / 2
+        let layout = bookCV.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: 280)
     }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.arrayBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCell", for: indexPath) as! HomeCollectionViewCell
+
+        cell.bookName.text = arrayBooks[indexPath.row][0]
+        cell.author.text = arrayBooks[indexPath.row][1]
+        cell.bookImg.image = UIImage(named: arrayBooks[indexPath.row][2])
+
         return cell
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
         
+        //Briefly fade the cell on selection
+        UIView.animate(withDuration: 0.5,
+                       animations: {
+                        //Fade-out
+                        cell?.alpha = 0.5
+        })
+//        { (completed) in
+//            UIView.animate(withDuration: 0.5,
+//                           animations: {
+//                            //Fade-out
+//                            cell?.alpha = 1
+//            })
+//        }
+
+        let alert = UIAlertController(title: "Alert", message: "Do you want to ", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
