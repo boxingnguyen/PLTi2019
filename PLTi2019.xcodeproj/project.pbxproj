@@ -14,6 +14,8 @@
 		5B6D865921FAF168003E525B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D865821FAF168003E525B /* Assets.xcassets */; };
 		5B6D865C21FAF168003E525B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */; };
 		5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D866421FAF258003E525B /* LoginViewController.swift */; };
+		5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */; };
+		5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */; };
 		5BD398CA221427770066FF61 /* object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD398C9221427770066FF61 /* object.swift */; };
 		5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDFA82B21FEB60F00258E88 /* Constants.swift */; };
 		5BDFA82E21FEB64500258E88 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDFA82D21FEB64500258E88 /* Extensions.swift */; };
@@ -31,6 +33,8 @@
 		5B6D865B21FAF168003E525B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B6D865D21FAF168003E525B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B6D866421FAF258003E525B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
+		5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BD398C9221427770066FF61 /* object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = object.swift; sourceTree = "<group>"; };
 		5BDFA82B21FEB60F00258E88 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5BDFA82D21FEB64500258E88 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				5BDFA82F21FEB9CA00258E88 /* SignUpViewController.swift */,
 				5BF1B5542211258A005B3123 /* HomeCollectionViewCell.swift */,
 				5B4EF484221282B80034B61A /* HomeViewController.swift */,
+				5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */,
+				5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -178,6 +184,8 @@
 				5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */,
 				5BD398CA221427770066FF61 /* object.swift in Sources */,
 				5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */,
+				5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */,
+				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
 				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
 				5BF1B5552211258A005B3123 /* HomeCollectionViewCell.swift in Sources */,

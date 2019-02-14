@@ -10,8 +10,5 @@ import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var author: UILabel!
-    @IBOutlet weak var bookName: UILabel!
-    @IBOutlet weak var bookImg: UIImageView!
     
 }

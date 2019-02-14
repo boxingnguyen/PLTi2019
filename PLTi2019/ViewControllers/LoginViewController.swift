@@ -22,9 +22,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(deptrai)
                 
                 let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let home = stboard.instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
+                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
                 
-                self.navigationController?.pushViewController(home, animated: true)
+                self.navigationController?.pushViewController(bookshelf, animated: true)
                 print("xxx")
             }) { (Error) in
                 print("a du")
