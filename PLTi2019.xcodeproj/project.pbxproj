@@ -14,6 +14,12 @@
 		5B6D865921FAF168003E525B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D865821FAF168003E525B /* Assets.xcassets */; };
 		5B6D865C21FAF168003E525B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */; };
 		5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D866421FAF258003E525B /* LoginViewController.swift */; };
+		5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AD018221ABA0B00374658 /* Printer3dTutorialViewController.swift */; };
+		5B7AD01B221ABD6E00374658 /* 3dprint.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AD01A221ABD6D00374658 /* 3dprint.gif */; };
+		5B7AD020221AC97B00374658 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7AD01D221AC97B00374658 /* SwiftyJSON.framework */; };
+		5B7AD021221AC97B00374658 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7AD01E221AC97B00374658 /* Alamofire.framework */; };
+		5B7AD022221AC97B00374658 /* SwiftGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7AD01F221AC97B00374658 /* SwiftGif.framework */; };
+		5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */; };
 		5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */; };
 		5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */; };
 		5BD398CA221427770066FF61 /* object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD398C9221427770066FF61 /* object.swift */; };
@@ -33,6 +39,12 @@
 		5B6D865B21FAF168003E525B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B6D865D21FAF168003E525B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B6D866421FAF258003E525B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B7AD018221ABA0B00374658 /* Printer3dTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer3dTutorialViewController.swift; sourceTree = "<group>"; };
+		5B7AD01A221ABD6D00374658 /* 3dprint.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3dprint.gif; sourceTree = "<group>"; };
+		5B7AD01D221AC97B00374658 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		5B7AD01E221AC97B00374658 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		5B7AD01F221AC97B00374658 /* SwiftGif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGif.framework; path = Carthage/Build/iOS/SwiftGif.framework; sourceTree = "<group>"; };
+		5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorialViewController.swift; sourceTree = "<group>"; };
 		5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
 		5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BD398C9221427770066FF61 /* object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = object.swift; sourceTree = "<group>"; };
@@ -47,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B7AD020221AC97B00374658 /* SwiftyJSON.framework in Frameworks */,
+				5B7AD021221AC97B00374658 /* Alamofire.framework in Frameworks */,
+				5B7AD022221AC97B00374658 /* SwiftGif.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +71,10 @@
 		5B6D864521FAF164003E525B = {
 			isa = PBXGroup;
 			children = (
+				5B7AD018221ABA0B00374658 /* Printer3dTutorialViewController.swift */,
 				5B6D865021FAF164003E525B /* PLTi2019 */,
 				5B6D864F21FAF164003E525B /* Products */,
+				5B7AD01C221AC97B00374658 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,8 +110,19 @@
 				5B4EF484221282B80034B61A /* HomeViewController.swift */,
 				5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */,
 				5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */,
+				5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5B7AD01C221AC97B00374658 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B7AD01E221AC97B00374658 /* Alamofire.framework */,
+				5B7AD01F221AC97B00374658 /* SwiftGif.framework */,
+				5B7AD01D221AC97B00374658 /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		5BDFA82A21FEB5CC00258E88 /* Utils */ = {
@@ -103,6 +131,7 @@
 				5BDFA82B21FEB60F00258E88 /* Constants.swift */,
 				5BDFA82D21FEB64500258E88 /* Extensions.swift */,
 				5BD398C9221427770066FF61 /* object.swift */,
+				5B7AD01A221ABD6D00374658 /* 3dprint.gif */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -117,6 +146,7 @@
 				5B6D864A21FAF164003E525B /* Sources */,
 				5B6D864B21FAF164003E525B /* Frameworks */,
 				5B6D864C21FAF164003E525B /* Resources */,
+				5B7AD023221AC98900374658 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -165,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B7AD01B221ABD6E00374658 /* 3dprint.gif in Resources */,
 				5B6D865C21FAF168003E525B /* LaunchScreen.storyboard in Resources */,
 				5B6D865921FAF168003E525B /* Assets.xcassets in Resources */,
 				5B6D865721FAF164003E525B /* Main.storyboard in Resources */,
@@ -173,6 +204,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5B7AD023221AC98900374658 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftGif.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5B6D864A21FAF164003E525B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -180,12 +234,14 @@
 			files = (
 				5BDFA83021FEB9CB00258E88 /* SignUpViewController.swift in Sources */,
 				5BDFA82E21FEB64500258E88 /* Extensions.swift in Sources */,
+				5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */,
 				5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */,
 				5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */,
 				5BD398CA221427770066FF61 /* object.swift in Sources */,
 				5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */,
 				5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */,
 				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
+				5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */,
 				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
 				5BF1B5552211258A005B3123 /* HomeCollectionViewCell.swift in Sources */,
@@ -336,7 +392,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XSSZM775S9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PLTi2019/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Quyen-Anh.PLTi2019";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -354,7 +415,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XSSZM775S9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PLTi2019/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,7 +428,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Quyen-Anh.PLTi2019";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

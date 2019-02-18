@@ -8,11 +8,14 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var btnSignUp: UIButton!
+    @IBOutlet weak var invalidEmail: UILabel!
+    @IBOutlet weak var blankFieldErr: UILabel!
+    var user = User()
     
     let haveAccountButton: UIButton = {
         let color = UIColor.init(red: 89, green: 156, blue: 120, alpha: 11)
@@ -39,9 +42,16 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = GREEN_THEME
         setupHaveAccountButton()
-        
+        setupView()
+        self.hideKeyboardWhenTappedAround()
+        self.username.delegate = self
+        self.email.delegate = self
+        self.password.delegate = self
+    }
+    
+    func setupView() {
+        view.backgroundColor = GREEN_THEME
         username.textColor = .white
         username.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         username.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
@@ -55,11 +65,69 @@ class SignUpViewController: UIViewController {
         password.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
         btnSignUp.layer.cornerRadius = 10
+        invalidEmail.isHidden = true
+        blankFieldErr.isHidden = true
+        
+//        @available(iOS 12.0, *) {
+//            let passwordRuleDescription = "required: lower; required: upper; required: digit; minlength: 6; maxlength: 16;"
+//            let passwordRules = UITextInputPasswordRules(descriptor: passwordRuleDescription)
+//            password.passwordRules = passwordRules
+//        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        self.dismissKeyboard()
+        return true
     }
     
     @objc func signInAction() {
         navigationController?.popViewController(animated: true)
-        print("abc")
+    }
+    
+    @IBAction func signUp(_ sender: Any) {
+        // validate username, email, password
+        if let username = self.username.text, let email = self.email.text, let password = self.password.text {
+            if username.isEmpty || email.isEmpty || password.isEmpty {
+                blankFieldErr.isHidden = false
+                blankFieldErr.textColor = UIColor.red
+                blankFieldErr.text = "All fields are required!"
+                invalidEmail.isHidden = true
+                return
+            }
+            
+            blankFieldErr.isHidden = true
+            
+            if !isValidEmail(testStr: email) {
+                invalidEmail.isHidden = false
+                invalidEmail.text = "Your email address is invalid, please check!"
+                invalidEmail.textColor = UIColor.red
+                return
+            }
+            
+            print(username, " ", email, " ", password)
+            invalidEmail.isHidden = true
+            
+            // send api to save new account
+            
+            // after save in dbs ok -> save in session
+            do {
+                let user = Team(username: username, email: email, password: password)
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+                
+                UserDefaults.standard.set(encodedData, forKey: "user")
+                UserDefaults.standard.synchronize()
+            } catch {
+                print("Couldn't save user")
+            }
+
+            // return to login page
+            print("signup successfull")
+            let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let loginVC = stboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            
+            self.navigationController?.pushViewController(loginVC, animated: true)
+        }
     }
     
     fileprivate func setupHaveAccountButton() {

@@ -171,6 +171,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         print(self.duration.day)
     }
     
+    
+    @IBAction func goToHome(_ sender: Any) {
+    }
+    
 }
 
 extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDataSource {

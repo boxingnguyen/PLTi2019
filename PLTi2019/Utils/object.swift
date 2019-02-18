@@ -36,3 +36,35 @@ enum BookType: String {
     case others = "Others"
     case all = "All"
 }
+
+class User {
+    var username:   String = ""
+    var email:      String = ""
+    var password:   String = ""
+}
+
+class Team: NSObject, NSCoding {
+    var username: String
+    var email: String
+    var password: String
+    
+    init(username: String, email: String, password: String) {
+        self.username = username
+        self.email = email
+        self.password = password
+        
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let username = aDecoder.decodeObject(forKey: "username") as! String
+        let email = aDecoder.decodeObject(forKey: "email") as! String
+        let password = aDecoder.decodeObject(forKey: "password") as! String
+        self.init(username: username, email: email, password: password)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(username, forKey: "username")
+        aCoder.encode(email, forKey: "email")
+        aCoder.encode(password, forKey: "password")
+    }
+}
