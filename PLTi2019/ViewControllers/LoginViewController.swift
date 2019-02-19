@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 do {
                     // test using userDefault var while have not api yet
-                    let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! Team
+                    let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
                     
                     if name == user.username && pass == user.password {
                         self.navigationController?.pushViewController(bookshelf, animated: true)

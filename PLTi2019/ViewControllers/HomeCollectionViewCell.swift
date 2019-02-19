@@ -9,6 +9,6 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell {
-    
-    
+    @IBOutlet weak var menuIcon: UIImageView!
+    @IBOutlet weak var menuTitle: UILabel!
 }

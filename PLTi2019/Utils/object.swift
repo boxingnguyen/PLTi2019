@@ -37,31 +37,31 @@ enum BookType: String {
     case all = "All"
 }
 
-class User {
-    var username:   String = ""
-    var email:      String = ""
-    var password:   String = ""
+enum MenuTitle: String {
+    case visit = "Let's go around the TMH TechLab!"
+    case book = "TMH TechLab Library"
+    case printer = "Let's learn how to print 3d objects!"
 }
 
-class Team: NSObject, NSCoding {
+class User: NSObject, NSCoding {
     var username: String
     var email: String
     var password: String
-    
+
     init(username: String, email: String, password: String) {
         self.username = username
         self.email = email
         self.password = password
         
     }
-    
+
     required convenience init(coder aDecoder: NSCoder) {
         let username = aDecoder.decodeObject(forKey: "username") as! String
         let email = aDecoder.decodeObject(forKey: "email") as! String
         let password = aDecoder.decodeObject(forKey: "password") as! String
         self.init(username: username, email: email, password: password)
     }
-    
+
     func encode(with aCoder: NSCoder) {
         aCoder.encode(username, forKey: "username")
         aCoder.encode(email, forKey: "email")

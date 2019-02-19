@@ -15,7 +15,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var invalidEmail: UILabel!
     @IBOutlet weak var blankFieldErr: UILabel!
-    var user = User()
     
     let haveAccountButton: UIButton = {
         let color = UIColor.init(red: 89, green: 156, blue: 120, alpha: 11)
@@ -112,7 +111,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             // after save in dbs ok -> save in session
             do {
-                let user = Team(username: username, email: email, password: password)
+                let user = User(username: username, email: email, password: password)
                 let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
                 
                 UserDefaults.standard.set(encodedData, forKey: "user")
