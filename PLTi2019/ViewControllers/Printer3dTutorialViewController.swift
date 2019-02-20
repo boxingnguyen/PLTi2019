@@ -18,6 +18,12 @@ class Printer3dTutorialViewController: UIViewController {
         setupView()
     }
    
+    @IBAction func backHome(_ sender: Any) {
+        let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let homeVC = stboard.instantiateViewController(withIdentifier: "homeVC")
+        self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+    
     func setupView() {
         gifView.loadGif(asset: "3dprinting")
         self.navigationItem.title = "3D Printing Tutorial"

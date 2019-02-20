@@ -31,21 +31,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 self.errorLabel.isHidden = true
                 let userDefaults = UserDefaults.standard
-                let decodedUser  = userDefaults.object(forKey: "user") as! Data
                 
-                do {
-                    // test using userDefault var while have not api yet
-                    let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
-                    
-                    if name == user.username && pass == user.password {
-                        self.navigationController?.pushViewController(bookshelf, animated: true)
-                    } else {
-                        print("show error")
-                        self.errorLabel.isHidden = false
+                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
+                    do {
+                        // test using userDefault var while have not api yet
+                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
+                        
+                        if name == user.username && pass == user.password {
+                            self.navigationController?.pushViewController(bookshelf, animated: true)
+                        } else {
+                            print("show error")
+                            self.errorLabel.isHidden = false
+                        }
+                    } catch {
+                        print("Couldn't get user")
                     }
-                } catch {
-                    print("Couldn't get user")
+                } else {
+                    self.errorLabel.isHidden = false
                 }
+                
             }) { (Error) in
                 print("a du")
             }

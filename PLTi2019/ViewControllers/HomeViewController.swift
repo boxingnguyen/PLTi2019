@@ -28,6 +28,14 @@ class HomeViewController: UIViewController {
         menuArr.append([MenuTitle.book.rawValue, "iconBook"])
         menuArr.append([MenuTitle.printer.rawValue, "iconPrinter"])
         
+        let width = view.frame.size.width
+        let layout = homeCV.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: width, height: 110)
+        
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
 }

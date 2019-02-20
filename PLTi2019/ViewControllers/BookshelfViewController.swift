@@ -47,8 +47,6 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.setHidesBackButton(true, animated:true)
-        navigationController?.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     func setupCollectionView() {
@@ -62,9 +60,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     func setupNavBar() {
-        self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
-        self.navigationItem.title = "Ours Bookshelf"
+        self.navigationController?.navigationBar.isHidden = false
+        
+//        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false
+//        self.navigationItem.title = "Ours Bookshelf"
         
         searchBar.delegate = self
         searchBar.placeholder = "book's name"
@@ -72,6 +71,8 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         searchBar.showsScopeBar = true
         searchBar.scopeButtonTitles = ["Comics", "History", "All", "Fiction", "Self-help"]
         searchBar.selectedScopeButtonIndex = selectedScopeIndex
+        
+        self.navigationItem.title = "TMH TechLab Library"
     }
     
     // after searchBar's text changed
