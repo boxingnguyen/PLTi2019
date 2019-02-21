@@ -40,4 +40,7 @@ class DetailTutorialViewController: UIViewController {
         navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }

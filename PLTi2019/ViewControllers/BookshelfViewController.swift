@@ -173,7 +173,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     
-    @IBAction func goToHome(_ sender: Any) {
+    @IBAction func backHome(_ sender: Any) {
+        let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let homeVC = stboard.instantiateViewController(withIdentifier: "homeVC")
+        self.navigationController?.pushViewController(homeVC, animated: true)
     }
     
 }

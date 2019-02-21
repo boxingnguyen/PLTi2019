@@ -37,4 +37,8 @@ class Printer3dTutorialViewController: UIViewController {
         attributedString.append(normalString)
         self.definition3dPrinting.attributedText = attributedString
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }
