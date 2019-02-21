@@ -29,18 +29,20 @@ class DetailTutorialViewController: UIViewController {
         step1Label.attributedText = NSAttributedString(string: "Step1:", attributes: underlineAttribute)
         step2Label.attributedText = NSAttributedString(string: "Step2:", attributes: underlineAttribute)
         step3Label.attributedText = NSAttributedString(string: "Step2:", attributes: underlineAttribute)
-    
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
+        
         self.tutVideo.load(withVideoId: "JxSeMGbkWYE")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        backItem.tintColor = UIColor.darkGray
-        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+//    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = false
+//    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
 }

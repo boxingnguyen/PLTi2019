@@ -19,9 +19,7 @@ class Printer3dTutorialViewController: UIViewController {
     }
    
     @IBAction func backHome(_ sender: Any) {
-        let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let homeVC = stboard.instantiateViewController(withIdentifier: "homeVC")
-        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupView() {
@@ -36,9 +34,11 @@ class Printer3dTutorialViewController: UIViewController {
         
         attributedString.append(normalString)
         self.definition3dPrinting.attributedText = attributedString
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        
     }
 }

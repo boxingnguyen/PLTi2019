@@ -16,10 +16,13 @@ class VisitViewController: UIViewController {
     }
     
     func setupView() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Let's go around!"
-        let yourBackImage = UIImage(named: "home")
-        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "home"), style: .plain, target: self, action: #selector(turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
+    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
