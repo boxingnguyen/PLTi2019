@@ -174,9 +174,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     
     
     @IBAction func backHome(_ sender: Any) {
-        let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let homeVC = stboard.instantiateViewController(withIdentifier: "homeVC")
-        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
