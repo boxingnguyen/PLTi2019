@@ -18,41 +18,54 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func btnLoginTouch(_ sender: Any) {
-        if let name = username.text, let pass = password.text {
-            Api.shared.login(username: name, password: pass, success: { (deptrai) in
-                // deptrai is variable store user information
-                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
-                
-                if name.isEmpty || pass.isEmpty {
-                    self.errorLabel.isHidden = false
-                    return
-                }
-                
-                self.errorLabel.isHidden = true
-                let userDefaults = UserDefaults.standard
-                
-                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
-                    do {
-                        // test using userDefault var while have not api yet
-                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
-                        
-                        if name == user.username && pass == user.password {
-                            self.navigationController?.pushViewController(bookshelf, animated: true)
-                        } else {
-                            print("show error")
-                            self.errorLabel.isHidden = false
-                        }
-                    } catch {
-                        print("Couldn't get user")
-                    }
-                } else {
-                    self.errorLabel.isHidden = false
-                }
-                
-            }) { (Error) in
-                print("a du")
+        if let email = username.text, let pass = password.text {
+            ApiService.shared.apiLogin(email: email, pass: pass, success: { (userJson) in
+//                print("Uset \(user)")
+                // save user
+                let user = UserDefaults.standard
+                user.set(userJson.email, forKey: "email")
+                // pop bookshelf
+                self.navigationController?.popViewController(animated: true)
+            }) { (err) in
+                print("Loi \(err.localizedDescription)")
+//                alert error or đăng ksy
             }
+            
+            
+//            Api.shared.login(username: name, password: pass, success: { (deptrai) in
+//                // deptrai is variable store user information
+//                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+//                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
+//
+//                if name.isEmpty || pass.isEmpty {
+//                    self.errorLabel.isHidden = false
+//                    return
+//                }
+//
+//                self.errorLabel.isHidden = true
+//                let userDefaults = UserDefaults.standard
+//
+//                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
+//                    do {
+//                        // test using userDefault var while have not api yet
+//                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
+//
+//                        if name == user.username && pass == user.password {
+//                            self.navigationController?.pushViewController(bookshelf, animated: true)
+//                        } else {
+//                            print("show error")
+//                            self.errorLabel.isHidden = false
+//                        }
+//                    } catch {
+//                        print("Couldn't get user")
+//                    }
+//                } else {
+//                    self.errorLabel.isHidden = false
+//                }
+//
+//            }) { (Error) in
+//                print("a du")
+//            }
         }
     }
     

@@ -146,7 +146,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     func animateOut () {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.0, animations: {
             self.borrowBookView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
             self.borrowBookView.alpha = 0
             
@@ -170,6 +170,28 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     @IBAction func borrowBook(_ sender: Any) {
         // send infor of selected book and duration to api
         print(self.duration.day)
+        
+        // check user login?
+        let userDefault = UserDefaults.standard
+        let checkEmail = userDefault.string(forKey: "email")
+        
+//        userDefault.removeObject(forKey: "user")
+//        userDefault.removeObject(forKey: "email")
+        
+        if checkEmail != nil {
+            // push
+            print("da dang nhap rui")
+            animateOut()
+            let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            print("chua dang nhap")
+            // hide popUp
+            animateOut()
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+        }
     }
     
     

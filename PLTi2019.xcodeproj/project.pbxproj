@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06BFAE44221E5368004DE54D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFAE43221E5368004DE54D /* ApiService.swift */; };
+		06BFAE46221E53CB004DE54D /* ConstansBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BFAE45221E53CB004DE54D /* ConstansBook.swift */; };
 		5B4B4D082201B30E006B03A3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B4D072201B30E006B03A3 /* Api.swift */; };
 		5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4EF484221282B80034B61A /* HomeViewController.swift */; };
 		5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D865121FAF164003E525B /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06BFAE43221E5368004DE54D /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		06BFAE45221E53CB004DE54D /* ConstansBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstansBook.swift; sourceTree = "<group>"; };
 		5B4B4D072201B30E006B03A3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5B4EF484221282B80034B61A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B6D864E21FAF164003E525B /* PLTi2019.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLTi2019.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,8 +78,17 @@
 		06BFAE3F221E4E44004DE54D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				06BFAE43221E5368004DE54D /* ApiService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		06BFAE42221E531A004DE54D /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				06BFAE45221E53CB004DE54D /* ConstansBook.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		5B6D864521FAF164003E525B = {
@@ -98,6 +111,7 @@
 		5B6D865021FAF164003E525B /* PLTi2019 */ = {
 			isa = PBXGroup;
 			children = (
+				06BFAE42221E531A004DE54D /* Global */,
 				06BFAE3F221E4E44004DE54D /* Service */,
 				5BDFA82A21FEB5CC00258E88 /* Utils */,
 				5B6D866321FAF237003E525B /* ViewControllers */,
@@ -245,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BDFA83021FEB9CB00258E88 /* SignUpViewController.swift in Sources */,
+				06BFAE46221E53CB004DE54D /* ConstansBook.swift in Sources */,
 				5BDFA82E21FEB64500258E88 /* Extensions.swift in Sources */,
 				5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */,
 				5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */,
@@ -255,6 +270,7 @@
 				5B6F00D6221C1BA000A840F7 /* VisitViewController.swift in Sources */,
 				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
 				5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */,
+				06BFAE44221E5368004DE54D /* ApiService.swift in Sources */,
 				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
 				5BF1B5552211258A005B3123 /* HomeCollectionViewCell.swift in Sources */,
