@@ -175,8 +175,8 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         let userDefault = UserDefaults.standard
         let checkEmail = userDefault.string(forKey: "email")
         
-//        userDefault.removeObject(forKey: "user")
-//        userDefault.removeObject(forKey: "email")
+        userDefault.removeObject(forKey: "user")
+        userDefault.removeObject(forKey: "email")
         
         if checkEmail != nil {
             // push

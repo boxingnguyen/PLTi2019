@@ -18,9 +18,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func btnLoginTouch(_ sender: Any) {
+        
         if let email = username.text, let pass = password.text {
+            // check error input fields
+            if email.isEmpty || pass.isEmpty {
+                self.errorLabel.isHidden = false
+                return
+            }
+            
             ApiService.shared.apiLogin(email: email, pass: pass, success: { (userJson) in
-//                print("Uset \(user)")
                 // save user
                 let user = UserDefaults.standard
                 user.set(userJson.email, forKey: "email")
@@ -28,7 +34,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.navigationController?.popViewController(animated: true)
             }) { (err) in
                 print("Loi \(err.localizedDescription)")
-//                alert error or đăng ksy
+                self.errorLabel.isHidden = false
+                return
+//                let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//                self.errorLabel.isHidden = false
             }
             
             

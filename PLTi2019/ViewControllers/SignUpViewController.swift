@@ -108,24 +108,49 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             invalidEmail.isHidden = true
             
             // send api to save new account
-            
-            // after save in dbs ok -> save in session
-            do {
-                let user = User(username: username, email: email, password: password)
-                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+            ApiService.shared.apiRegister(user: username, email: email, pass: password, success: { (userJson) in
+                print("User \(userJson)")
                 
-                UserDefaults.standard.set(encodedData, forKey: "user")
-                UserDefaults.standard.synchronize()
-            } catch {
-                print("Couldn't save user")
+                let alert = UIAlertController(title: "Success", message: "You have successfully registered", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    //come back login
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+                // after save in dbs ok -> save in session
+                do {
+                    let user = User(username: userJson.username, email: userJson.email, password: userJson.password)
+                    let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+                    
+                    UserDefaults.standard.set(encodedData, forKey: "user")
+                    UserDefaults.standard.synchronize()
+                    
+                } catch {
+                    print("Couldn't save user")
+                }
+                
+            }) { (err) in
+                print("Error \(err.localizedDescription)")
             }
-
-            // return to login page
-            print("signup successfull")
-            let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let loginVC = stboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
             
-            self.navigationController?.pushViewController(loginVC, animated: true)
+            
+//            // after save in dbs ok -> save in session
+//            do {
+//                let user = User(username: username, email: email, password: password)
+//                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+//
+//                UserDefaults.standard.set(encodedData, forKey: "user")
+//                UserDefaults.standard.synchronize()
+//            } catch {
+//                print("Couldn't save user")
+//            }
+//
+//            // return to login (bookshefl) page
+//            print("signup successfull")
+//            let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+//            let loginVC = stboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+//
+//            self.navigationController?.pushViewController(loginVC, animated: true)
         }
     }
     

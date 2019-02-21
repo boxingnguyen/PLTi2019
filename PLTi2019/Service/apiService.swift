@@ -130,5 +130,22 @@ class ApiService: NSObject {
         }
     }
     
+    func apiRegister(user: String, email: String, pass: String, success: @escaping(_ result: User) -> Void, error: @escaping(Error) ->Void) {
+        let options = [
+            "username": user,
+            "email": email,
+            "password": pass
+        ]
+        apiPost(path: "/api/REST/Users/add.json", options: options, success: { (json) in
+//            print("json \(json)")
+            let user = User(username: "", email: "", password: "")
+            user.username = json["User"]["name"].string ?? ""
+            user.email = json["User"]["email"].string ?? ""
+            success(user)
+        }) { (err) in
+            error(err)
+        }
+    }
+    
     
 }
