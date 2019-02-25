@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B1A1D76221E7CD00066167F /* Collection3dViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */; };
+		5B43F5502223A15A00D74FD3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */; };
 		5B4B4D082201B30E006B03A3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B4D072201B30E006B03A3 /* Api.swift */; };
 		5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4EF484221282B80034B61A /* HomeViewController.swift */; };
 		5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D865121FAF164003E525B /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection3dViewController.swift; sourceTree = "<group>"; };
+		5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		5B4B4D072201B30E006B03A3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5B4EF484221282B80034B61A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B6D864E21FAF164003E525B /* PLTi2019.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLTi2019.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 				5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */,
 				5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */,
 				5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */,
+				5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */,
 				5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */,
 			);
 			path = ViewControllers;
@@ -249,6 +252,7 @@
 				5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */,
 				5B6F00D6221C1BA000A840F7 /* VisitViewController.swift in Sources */,
 				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
+				5B43F5502223A15A00D74FD3 /* CollectionViewCell.swift in Sources */,
 				5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */,
 				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
