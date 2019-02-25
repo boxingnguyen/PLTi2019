@@ -2,4 +2,4 @@ github "Alamofire/Alamofire"
 github "SwiftyJSON/SwiftyJSON"
 github "realm/realm-cocoa"
 github "bahlo/SwiftGif" ~> 1.7.0
-github "youtube/youtube-ios-player-helper" ~> 0.1.4
+github "youtube/youtube-ios-player-helper" ~> 0.1.6
