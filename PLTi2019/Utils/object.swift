@@ -62,7 +62,6 @@ class User: NSObject, NSCoding {
         
     }
 
-    // k hiêu chỗ nay để làm gì nữa
     required convenience init(coder aDecoder: NSCoder) {
         let username = aDecoder.decodeObject(forKey: "username") as! String
         let email = aDecoder.decodeObject(forKey: "email") as! String
