@@ -253,12 +253,16 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="signIn" style="done" id="aXH-a3-E6i">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="itemButtonLogin:" destination="Rsw-bD-kNh" id="Zj9-Je-2SO"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bookCV" destination="si6-ZZ-T0F" id="LfW-a0-pY3"/>
                         <outlet property="borrowBookView" destination="kvO-Pz-61a" id="cby-Rz-ct7"/>
                         <outlet property="datePicker" destination="ap0-Zs-f4i" id="MCR-na-8QQ"/>
+                        <outlet property="itemButtonLogin" destination="aXH-a3-E6i" id="xtj-PL-Q8K"/>
                         <outlet property="searchBar" destination="or0-4c-zq7" id="AW6-ey-EhC"/>
                         <outlet property="visualEffectView" destination="HlJ-2G-UvX" id="R0M-Kz-ZaW"/>
                     </connections>
