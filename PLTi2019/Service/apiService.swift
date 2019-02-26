@@ -150,7 +150,7 @@ class ApiService: NSObject {
     func apiListBooks(book_id: String, user_login: String, success: @escaping(_ result: [Book]) -> Void, error: @escaping(Error) -> Void) {
         // check login
         let userDefault = UserDefaults.standard
-        let emailDefault = userDefault.string(forKey: "id") ?? ""
+        _ = userDefault.string(forKey: "id") ?? ""
         
         // Khong truyen len gi co nghia show all 50 quyen 1
         let options: [String: String] = [
