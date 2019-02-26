@@ -9,6 +9,10 @@
 import UIKit
 //import Alamofire
 
+protocol selectBookDelegate {
+    func chooseBookReload(_ result: Book)
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var username: UITextField!
@@ -16,6 +20,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+    var delegate: selectBookDelegate?
     
     @IBAction func btnLoginTouch(_ sender: Any) {
         
@@ -30,8 +37,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // save user
                 let user = UserDefaults.standard
                 user.set(userJson.email, forKey: "email")
+                user.set(userJson.id, forKey: "id")
+                user.set(userJson.username, forKey: "user")
                 // pop bookshelf
+                self.navigationController?.isNavigationBarHidden = false
+                
+                // add book to chooseBook
+                self.delegate?.chooseBookReload(self.selectBook)
+                
                 self.navigationController?.popViewController(animated: true)
+                
             }) { (err) in
                 print("Loi \(err.localizedDescription)")
                 self.errorLabel.isHidden = false
@@ -86,6 +101,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         self.username.delegate = self
         self.password.delegate = self
+        
+        print("Book \(selectBook.name) and \(selectBook.author)")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

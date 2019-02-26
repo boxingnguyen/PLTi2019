@@ -15,12 +15,11 @@ class ApiService: NSObject {
     static let shared = ApiService()
     
     func apiPost(path: String, options: [String: String], success : @escaping (_ result: JSON) -> Void, error: @escaping (Error) -> Void) {
-        let endPoint = "\(ConstansBook.apiBaseUrl)\(path)"
         
+        let endPoint = "\(ConstansBook.apiBaseUrl)\(path)"
         // add hearder
         let header: HTTPHeaders = [
             "Accept": "application/json"
-//            "user-email":   (ConstansBook.session?.email)!
         ]
         
         print(endPoint)
@@ -73,12 +72,13 @@ class ApiService: NSObject {
         }
         
         // Add header
-        let header: HTTPHeaders = [
-            "user-email":   (ConstansBook.session?.email)!,
-            ]
+//        let header: HTTPHeaders = [
+//            "Accept": "application/json"
+////            "user-email":   (ConstansBook.session?.email)!,
+//            ]
         
         print(endPoint)
-        Alamofire.request(endPoint, method: .get, parameters: options, encoding: URLEncoding.default, headers: header)
+        Alamofire.request(endPoint, method: .get, parameters: options, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
                 guard let object = response.result.value else {
                     error(response.result.error!)
@@ -119,9 +119,8 @@ class ApiService: NSObject {
         ]
         apiPost(path: "/api/REST/Users/login.json", options: options, success: { (json) in
             print(json)
-//            print(json["User"]["name"])
-            
-            let user = User(username: "", email: "", password: "")
+            let user = User(id: "", username: "", email: "", password: "")
+            user.id = json["User"]["id"].string ?? ""
             user.email = json["User"]["email"].string ?? ""
             user.username = json["User"]["name"].string ?? ""
             success(user)
@@ -137,8 +136,9 @@ class ApiService: NSObject {
             "password": pass
         ]
         apiPost(path: "/api/REST/Users/add.json", options: options, success: { (json) in
-//            print("json \(json)")
-            let user = User(username: "", email: "", password: "")
+            
+            let user = User(id: "", username: "", email: "", password: "")
+            user.id = json["User"]["id"].string ?? ""
             user.username = json["User"]["name"].string ?? ""
             user.email = json["User"]["email"].string ?? ""
             success(user)
@@ -147,5 +147,64 @@ class ApiService: NSObject {
         }
     }
     
+    func apiListBooks(book_id: String, user_login: String, success: @escaping(_ result: [Book]) -> Void, error: @escaping(Error) -> Void) {
+        // check login
+        let userDefault = UserDefaults.standard
+        let emailDefault = userDefault.string(forKey: "id") ?? ""
+        
+        // Khong truyen len gi co nghia show all 50 quyen 1
+        let options: [String: String] = [
+            "id": book_id,
+            "user_id2": user_login
+        ]
+        apiGet(path: "/api/REST/Books.json", options: options, success: { (jsons) in
+            var listBooks = [Book]()
+            jsons["Book"].forEach({ (_, json) in
+                let listBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+                listBook.id = json["id"].string ?? ""
+                listBook.name = json["name_book"].string ?? ""
+                listBook.author = json["author"].string ?? ""
+                listBook.image = json["image"].string ?? ""
+                switch json["category_id"].string {
+                case "0":
+                    // commic
+                    listBook.catergory = .comics
+                case "1":
+                    listBook.catergory = .fiction
+                case "2" :
+                    listBook.catergory = .selfHelf
+                default:
+                    listBook.catergory = .all
+                }
+                listBook.image = json["image"].string ?? ""
+//                print("Status \(json["status"].string)")
+                if json["status"].string == "0" {
+                    listBook.isBorrow = false
+                } else {
+                    listBook.isBorrow = true
+                }
+                
+//                print("url \(listBook.image)")
+//                listBook.catergory = json["category"].string ?? ""
+//                print("lít ame \(listBook.name)")
+//                print("Date \(json["Book"]["date_borrow"])")
+//                if json["Book"]["user_id2"].string == emailDefault {
+//                    print("da muon")
+//                    listBook.isBorrow = true
+//                } else {
+//                    print("chua dc muon")
+//                    listBook.isBorrow = false
+//                }
+//
+                listBooks.append(listBook)
+            })
+            
+            success(listBooks)
+            
+        }) { (err) in
+            error(err)
+        }
+        
+    }
     
 }

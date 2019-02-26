@@ -119,7 +119,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
                 // after save in dbs ok -> save in session
                 do {
-                    let user = User(username: userJson.username, email: userJson.email, password: userJson.password)
+                    let user = User(id: userJson.id , username: userJson.username, email: userJson.email, password: userJson.password)
                     let encodedData = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
                     
                     UserDefaults.standard.set(encodedData, forKey: "user")
