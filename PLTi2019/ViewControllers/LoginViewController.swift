@@ -9,6 +9,10 @@
 import UIKit
 //import Alamofire
 
+protocol selectBookDelegate {
+    func chooseBookReload(_ result: Book)
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var username: UITextField!
@@ -17,42 +21,77 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnForgotPass: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
+    var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+    var delegate: selectBookDelegate?
+    
     @IBAction func btnLoginTouch(_ sender: Any) {
-        if let name = username.text, let pass = password.text {
-            Api.shared.login(username: name, password: pass, success: { (deptrai) in
-                // deptrai is variable store user information
-                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
-                
-                if name.isEmpty || pass.isEmpty {
-                    self.errorLabel.isHidden = false
-                    return
-                }
-                
-                self.errorLabel.isHidden = true
-                let userDefaults = UserDefaults.standard
-                
-                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
-                    do {
-                        // test using userDefault var while have not api yet
-                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
-                        
-                        if name == user.username && pass == user.password {
-                            self.navigationController?.pushViewController(bookshelf, animated: true)
-                        } else {
-                            print("show error")
-                            self.errorLabel.isHidden = false
-                        }
-                    } catch {
-                        print("Couldn't get user")
-                    }
-                } else {
-                    self.errorLabel.isHidden = false
-                }
-                
-            }) { (Error) in
-                print("a du")
+        
+        if let email = username.text, let pass = password.text {
+            // check error input fields
+            if email.isEmpty || pass.isEmpty {
+                self.errorLabel.isHidden = false
+                return
             }
+            
+            ApiService.shared.apiLogin(email: email, pass: pass, success: { (userJson) in
+                // save user
+                let user = UserDefaults.standard
+                user.set(userJson.email, forKey: "email")
+                user.set(userJson.id, forKey: "id")
+                user.set(userJson.username, forKey: "user")
+                // pop bookshelf
+                self.navigationController?.isNavigationBarHidden = false
+                
+                // add book to chooseBook
+                self.delegate?.chooseBookReload(self.selectBook)
+                
+                self.navigationController?.popViewController(animated: true)
+                
+            }) { (err) in
+                print("Loi \(err.localizedDescription)")
+                self.errorLabel.isHidden = false
+                return
+//                let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//                self.errorLabel.isHidden = false
+            }
+            
+            
+//            Api.shared.login(username: name, password: pass, success: { (deptrai) in
+//                // deptrai is variable store user information
+//                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+//                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
+//
+//                if name.isEmpty || pass.isEmpty {
+//                    self.errorLabel.isHidden = false
+//                    return
+//                }
+//
+//                self.errorLabel.isHidden = true
+//                let userDefaults = UserDefaults.standard
+//
+//                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
+//                    do {
+//                        // test using userDefault var while have not api yet
+//                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
+//
+//                        if name == user.username && pass == user.password {
+//                            self.navigationController?.pushViewController(bookshelf, animated: true)
+//                        } else {
+//                            print("show error")
+//                            self.errorLabel.isHidden = false
+//                        }
+//                    } catch {
+//                        print("Couldn't get user")
+//                    }
+//                } else {
+//                    self.errorLabel.isHidden = false
+//                }
+//
+//            }) { (Error) in
+//                print("a du")
+//            }
         }
     }
     
@@ -62,6 +101,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         self.username.delegate = self
         self.password.delegate = self
+        
+        print("Book \(selectBook.name) and \(selectBook.author)")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
