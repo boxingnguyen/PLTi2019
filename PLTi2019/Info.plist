@@ -43,6 +43,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+<<<<<<< HEAD
     
     <key>NSAppTransportSecurity</key>
     <dict>
@@ -50,5 +51,11 @@
         <true/>
     </dict>
     
+=======
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Visit TMH TechLab as a museum</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Visit TMH TechLab as a museum</string>
+>>>>>>> origin
 </dict>
 </plist>
