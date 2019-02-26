@@ -444,9 +444,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-Yq-OU4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-Yq-OU4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Tribal Media House Technology Lab" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym2-sr-T7g">
                                 <rect key="frame" x="30" y="114" width="354" height="55"/>
@@ -501,13 +500,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" id="5l9-HY-AAB"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="bottom" secondItem="0OI-6E-i6j" secondAttribute="bottom" id="E93-tr-CZ3"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="centerX" secondItem="sS4-s8-F2F" secondAttribute="centerX" id="Jy0-se-3E6"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="trailing" secondItem="sS4-s8-F2F" secondAttribute="trailing" id="KQG-0R-7Yd"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" id="Lvv-Jx-CXE"/>
-                            <constraint firstItem="tCo-dp-Qd3" firstAttribute="bottom" secondItem="sS4-s8-F2F" secondAttribute="bottom" id="NAV-Cc-sT9"/>
+                            <constraint firstItem="tCo-dp-Qd3" firstAttribute="bottom" secondItem="0OI-6E-i6j" secondAttribute="bottom" id="NAV-Cc-sT9"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="top" secondItem="0OI-6E-i6j" secondAttribute="top" id="Tss-pe-zcf"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" constant="30" id="X3i-Jk-5Sb"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="top" secondItem="sS4-s8-F2F" secondAttribute="top" constant="50" id="cpn-V2-ojy"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="top" secondItem="ym2-sr-T7g" secondAttribute="bottom" constant="100" id="gLd-2e-KjX"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="trailing" secondItem="sS4-s8-F2F" secondAttribute="trailing" id="wkK-iH-r2A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sS4-s8-F2F"/>
                     </view>
@@ -529,27 +532,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dep trai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="663-lb-DvA">
-                                <rect key="frame" x="163" y="236" width="61" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-iM-xRi">
+                                <rect key="frame" x="144" y="183" width="127" height="30"/>
+                                <state key="normal" title="Go to TMH LIbrary">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToBook:" destination="c8q-m0-4zF" eventType="touchUpInside" id="ETA-5d-vPc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOu-nb-tid">
+                                <rect key="frame" x="127" y="280" width="161" height="30"/>
+                                <state key="normal" title="Go to 3d printer tutorial">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToPrinter:" destination="c8q-m0-4zF" eventType="touchUpInside" id="qOw-db-aUd"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.27647128807106602" green="0.27647128807106602" blue="0.27647128807106602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="663-lb-DvA" firstAttribute="top" secondItem="Pwc-fX-IK7" secondAttribute="top" constant="172" id="RzZ-VS-KfU"/>
-                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="663-lb-DvA" secondAttribute="trailing" constant="190" id="afy-Ex-cIe"/>
-                            <constraint firstItem="663-lb-DvA" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="163" id="gQZ-co-4K2"/>
-                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="bottom" secondItem="663-lb-DvA" secondAttribute="bottom" constant="479" id="vPl-YG-Hq2"/>
+                            <constraint firstItem="wRW-iM-xRi" firstAttribute="top" secondItem="Pwc-fX-IK7" secondAttribute="top" constant="119" id="1VY-uT-43L"/>
+                            <constraint firstItem="lOu-nb-tid" firstAttribute="top" secondItem="wRW-iM-xRi" secondAttribute="bottom" constant="67" id="9tM-sm-pII"/>
+                            <constraint firstItem="lOu-nb-tid" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="127" id="ZIc-5K-puc"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="wRW-iM-xRi" secondAttribute="trailing" constant="143" id="ejC-Ex-5Mb"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="bottom" secondItem="lOu-nb-tid" secondAttribute="bottom" constant="426" id="mM1-X1-IXN"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="lOu-nb-tid" secondAttribute="trailing" constant="126" id="ocf-AH-4Yk"/>
+                            <constraint firstItem="wRW-iM-xRi" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="144" id="sBH-Ny-x1q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pwc-fX-IK7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Let's go around TechLab" id="UGb-91-yMM"/>
+                    <connections>
+                        <outlet property="buttonBook" destination="wRW-iM-xRi" id="BD3-wt-rnu"/>
+                        <outlet property="buttonPrinter" destination="lOu-nb-tid" id="DQd-bh-Aai"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pdn-CT-BVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3919" y="-965"/>
+            <point key="canvasLocation" x="3918.8405797101454" y="-965.21739130434787"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J6Q-1E-M3U">
