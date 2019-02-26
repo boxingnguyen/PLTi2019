@@ -44,8 +44,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Detect beacons and display the color of the closest one</string>
+	<string>Visit TMH TechLab as a museum</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Detect beacons around</string>
+	<string>Visit TMH TechLab as a museum</string>
 </dict>
 </plist>
