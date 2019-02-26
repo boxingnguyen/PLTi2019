@@ -28,7 +28,7 @@ class DetailTutorialViewController: UIViewController {
         
         step1Label.attributedText = NSAttributedString(string: "Step1:", attributes: underlineAttribute)
         step2Label.attributedText = NSAttributedString(string: "Step2:", attributes: underlineAttribute)
-        step3Label.attributedText = NSAttributedString(string: "Step2:", attributes: underlineAttribute)
+        step3Label.attributedText = NSAttributedString(string: "Step3:", attributes: underlineAttribute)
         
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))

@@ -65,3 +65,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+PLTi2019.xcodeproj/xcshareddata/
+PLTi2019.xcodeproj/project.pbxproj

@@ -444,9 +444,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-Yq-OU4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-Yq-OU4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Tribal Media House Technology Lab" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym2-sr-T7g">
                                 <rect key="frame" x="30" y="114" width="354" height="55"/>
@@ -501,13 +500,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" id="5l9-HY-AAB"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="bottom" secondItem="0OI-6E-i6j" secondAttribute="bottom" id="E93-tr-CZ3"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="centerX" secondItem="sS4-s8-F2F" secondAttribute="centerX" id="Jy0-se-3E6"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="trailing" secondItem="sS4-s8-F2F" secondAttribute="trailing" id="KQG-0R-7Yd"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" id="Lvv-Jx-CXE"/>
-                            <constraint firstItem="tCo-dp-Qd3" firstAttribute="bottom" secondItem="sS4-s8-F2F" secondAttribute="bottom" id="NAV-Cc-sT9"/>
+                            <constraint firstItem="tCo-dp-Qd3" firstAttribute="bottom" secondItem="0OI-6E-i6j" secondAttribute="bottom" id="NAV-Cc-sT9"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="top" secondItem="0OI-6E-i6j" secondAttribute="top" id="Tss-pe-zcf"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="leading" secondItem="sS4-s8-F2F" secondAttribute="leading" constant="30" id="X3i-Jk-5Sb"/>
                             <constraint firstItem="ym2-sr-T7g" firstAttribute="top" secondItem="sS4-s8-F2F" secondAttribute="top" constant="50" id="cpn-V2-ojy"/>
                             <constraint firstItem="tCo-dp-Qd3" firstAttribute="top" secondItem="ym2-sr-T7g" secondAttribute="bottom" constant="100" id="gLd-2e-KjX"/>
+                            <constraint firstItem="oeW-Yq-OU4" firstAttribute="trailing" secondItem="sS4-s8-F2F" secondAttribute="trailing" id="wkK-iH-r2A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sS4-s8-F2F"/>
                     </view>
@@ -529,27 +532,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dep trai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="663-lb-DvA">
-                                <rect key="frame" x="163" y="236" width="61" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-iM-xRi">
+                                <rect key="frame" x="144" y="183" width="127" height="30"/>
+                                <state key="normal" title="Go to TMH LIbrary">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToBook:" destination="c8q-m0-4zF" eventType="touchUpInside" id="ETA-5d-vPc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOu-nb-tid">
+                                <rect key="frame" x="127" y="280" width="161" height="30"/>
+                                <state key="normal" title="Go to 3d printer tutorial">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToPrinter:" destination="c8q-m0-4zF" eventType="touchUpInside" id="qOw-db-aUd"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.27647128807106602" green="0.27647128807106602" blue="0.27647128807106602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="663-lb-DvA" firstAttribute="top" secondItem="Pwc-fX-IK7" secondAttribute="top" constant="172" id="RzZ-VS-KfU"/>
-                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="663-lb-DvA" secondAttribute="trailing" constant="190" id="afy-Ex-cIe"/>
-                            <constraint firstItem="663-lb-DvA" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="163" id="gQZ-co-4K2"/>
-                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="bottom" secondItem="663-lb-DvA" secondAttribute="bottom" constant="479" id="vPl-YG-Hq2"/>
+                            <constraint firstItem="wRW-iM-xRi" firstAttribute="top" secondItem="Pwc-fX-IK7" secondAttribute="top" constant="119" id="1VY-uT-43L"/>
+                            <constraint firstItem="lOu-nb-tid" firstAttribute="top" secondItem="wRW-iM-xRi" secondAttribute="bottom" constant="67" id="9tM-sm-pII"/>
+                            <constraint firstItem="lOu-nb-tid" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="127" id="ZIc-5K-puc"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="wRW-iM-xRi" secondAttribute="trailing" constant="143" id="ejC-Ex-5Mb"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="bottom" secondItem="lOu-nb-tid" secondAttribute="bottom" constant="426" id="mM1-X1-IXN"/>
+                            <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="lOu-nb-tid" secondAttribute="trailing" constant="126" id="ocf-AH-4Yk"/>
+                            <constraint firstItem="wRW-iM-xRi" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="144" id="sBH-Ny-x1q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pwc-fX-IK7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Let's go around TechLab" id="UGb-91-yMM"/>
+                    <connections>
+                        <outlet property="buttonBook" destination="wRW-iM-xRi" id="BD3-wt-rnu"/>
+                        <outlet property="buttonPrinter" destination="lOu-nb-tid" id="DQd-bh-Aai"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pdn-CT-BVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3920.289855072464" y="-776.08695652173924"/>
+            <point key="canvasLocation" x="3918.8405797101454" y="-965.21739130434787"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J6Q-1E-M3U">
@@ -633,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIu-aV-D3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3918.8405797101454" y="741.84782608695662"/>
+            <point key="canvasLocation" x="3900" y="1106"/>
         </scene>
         <!--Detail Tutorial View Controller-->
         <scene sceneID="vqF-gD-01E">
@@ -649,51 +671,67 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Use software to design 3d objects and export to ">
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=".obj">
+                                    <fragment content=".obj ">
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="or ">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=".">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontEmphasized"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=" or ">
+                                    <fragment content="stl ">
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="format file. Here we use ">
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=".stl ">
                                         <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
-                                            <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="format file. Here we use ">
+                                    <fragment content="format. A friendly web app for designing:  ">
                                         <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=".stl">
-                                        <attributes>
-                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
-                                            <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontEmphasized"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" format. A friendly web app for designing:  ">
-                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="https://www.tinkercad.com">
                                         <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <url key="NSLink" string="https://www.tinkercad.com"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -741,13 +779,33 @@
                                     <constraint firstAttribute="height" constant="79.666666666666629" id="nmZ-hr-fRN"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Using .stl file in step 1 and transform ">
+                                    <fragment content="Using ">
                                         <attributes>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=".gcode ">
+                                    <fragment content=".stl">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" file in step 1 and transform ">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=".gcode">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
                                         <attributes>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontEmphasized"/>
@@ -772,14 +830,39 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ig6-76-tMF">
-                                <rect key="frame" x="20" y="311.66666666666669" width="374" height="78"/>
+                                <rect key="frame" x="20" y="311.66666666666669" width="374" height="90"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="78" id="bak-FJ-puc"/>
+                                    <constraint firstAttribute="height" constant="90" id="bak-FJ-puc"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Now copy the .gcode file to SD card, check flatness of print bed and preheat PLA. Finally choose the file and print. You can watch detail tutorial in video below:</string>
+                                    <fragment content="Now copy the ">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=".gcode ">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="file to SD card, check flatness of print bed and ">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="preheat PLA">
+                                        <attributes>
+                                            <font key="NSFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="13" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=". Finally choose the file and print. You can watch detail tutorial in video below:">
                                         <attributes>
                                             <font key="NSFont" size="13" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -857,69 +940,96 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbL-NB-aHV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4782.608695652174" y="741.84782608695662"/>
+            <point key="canvasLocation" x="4764" y="1106"/>
         </scene>
-        <!--Title-->
+        <!--TechLab's Gallery 3d-->
         <scene sceneID="lW0-Ak-hpv">
             <objects>
-                <viewController id="HvH-08-0sh" customClass="Collection3dViewController" customModule="PLTi2019" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gallery3d" id="HvH-08-0sh" customClass="Collection3dViewController" customModule="PLTi2019" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qI0-eQ-897">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2xW-LA-bUx">
-                                <rect key="frame" x="0.0" y="234" width="414" height="423"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="galleryCV" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2xW-LA-bUx">
+                                <rect key="frame" x="0.0" y="64" width="414" height="591"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SyV-5i-mh3">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SyV-5i-mh3">
+                                    <size key="itemSize" width="131" height="143"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Fe4-JX-5wn">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="gallery3d" reuseIdentifier="collectionCell" id="Fe4-JX-5wn" customClass="CollectionViewCell" customModule="PLTi2019" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="143"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="131" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NuX-UA-ffI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="131" height="143"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NuX-UA-ffI" secondAttribute="trailing" id="Ybp-iv-fCC"/>
+                                            <constraint firstItem="NuX-UA-ffI" firstAttribute="leading" secondItem="Fe4-JX-5wn" secondAttribute="leading" id="iux-Jc-Igk"/>
+                                            <constraint firstItem="NuX-UA-ffI" firstAttribute="top" secondItem="Fe4-JX-5wn" secondAttribute="top" id="jNJ-xp-jsi"/>
+                                            <constraint firstAttribute="bottom" secondItem="NuX-UA-ffI" secondAttribute="bottom" id="ure-E9-rMH"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="NuX-UA-ffI" id="nOQ-0m-6LC"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tJd-nB-kk6">
-                                <rect key="frame" x="87" y="80" width="240" height="128"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8h-4n-Oou">
-                                <rect key="frame" x="159" y="686" width="96" height="30"/>
+                                <rect key="frame" x="159" y="666" width="96" height="30"/>
                                 <state key="normal" title="Finish Tutorial"/>
+                                <connections>
+                                    <action selector="backHome:" destination="HvH-08-0sh" eventType="touchUpInside" id="4NO-Tn-b3P"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="odg-aA-5aG" firstAttribute="trailing" secondItem="J8h-4n-Oou" secondAttribute="trailing" constant="159" id="2XW-f0-YYQ"/>
-                            <constraint firstItem="tJd-nB-kk6" firstAttribute="leading" secondItem="odg-aA-5aG" secondAttribute="leading" constant="87" id="61x-p2-mSk"/>
-                            <constraint firstItem="odg-aA-5aG" firstAttribute="trailing" secondItem="tJd-nB-kk6" secondAttribute="trailing" constant="87" id="9ba-Jd-LrL"/>
-                            <constraint firstItem="2xW-LA-bUx" firstAttribute="top" secondItem="tJd-nB-kk6" secondAttribute="bottom" constant="26" id="GAZ-9P-nle"/>
-                            <constraint firstItem="J8h-4n-Oou" firstAttribute="leading" secondItem="odg-aA-5aG" secondAttribute="leading" constant="159" id="MF5-Fe-MQi"/>
                             <constraint firstItem="2xW-LA-bUx" firstAttribute="leading" secondItem="odg-aA-5aG" secondAttribute="leading" id="Okr-7U-92g"/>
-                            <constraint firstItem="odg-aA-5aG" firstAttribute="bottom" secondItem="2xW-LA-bUx" secondAttribute="bottom" constant="79" id="VHw-Ch-zNs"/>
-                            <constraint firstItem="odg-aA-5aG" firstAttribute="bottom" secondItem="J8h-4n-Oou" secondAttribute="bottom" constant="20" id="Yqm-8S-dpS"/>
+                            <constraint firstItem="J8h-4n-Oou" firstAttribute="centerX" secondItem="odg-aA-5aG" secondAttribute="centerX" id="QbW-zK-mNh"/>
+                            <constraint firstItem="odg-aA-5aG" firstAttribute="bottom" secondItem="J8h-4n-Oou" secondAttribute="bottom" constant="40" id="Rwe-5I-B5O"/>
+                            <constraint firstItem="odg-aA-5aG" firstAttribute="bottom" secondItem="2xW-LA-bUx" secondAttribute="bottom" constant="81" id="VHw-Ch-zNs"/>
                             <constraint firstItem="odg-aA-5aG" firstAttribute="trailing" secondItem="2xW-LA-bUx" secondAttribute="trailing" id="aPv-m9-Wk1"/>
-                            <constraint firstItem="J8h-4n-Oou" firstAttribute="top" secondItem="2xW-LA-bUx" secondAttribute="bottom" constant="29" id="jFY-8T-nJc"/>
-                            <constraint firstItem="2xW-LA-bUx" firstAttribute="top" secondItem="odg-aA-5aG" secondAttribute="top" constant="170" id="obU-Oj-FVA"/>
-                            <constraint firstItem="tJd-nB-kk6" firstAttribute="top" secondItem="odg-aA-5aG" secondAttribute="top" constant="16" id="vY2-MM-uXy"/>
+                            <constraint firstItem="2xW-LA-bUx" firstAttribute="top" secondItem="odg-aA-5aG" secondAttribute="top" id="obU-Oj-FVA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="odg-aA-5aG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="TbU-a6-Iyt"/>
+                    <navigationItem key="navigationItem" title="TechLab's Gallery 3d" id="TbU-a6-Iyt"/>
                     <connections>
-                        <outlet property="swipeImageView" destination="tJd-nB-kk6" id="32M-pZ-KV0"/>
+                        <outlet property="collectionCV" destination="2xW-LA-bUx" id="Vdg-WF-u1A"/>
+                        <outlet property="largeImg" destination="vfp-XB-JDk" id="l1m-Xp-VaP"/>
+                        <outlet property="largeImgView" destination="MxC-Sh-lc7" id="kBs-Zj-CHy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lx2-rH-1Y1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="MxC-Sh-lc7">
+                    <rect key="frame" x="0.0" y="0.0" width="403" height="371"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-XB-JDk">
+                            <rect key="frame" x="70" y="99" width="271" height="272"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="MKk-f1-CJS" firstAttribute="bottom" secondItem="vfp-XB-JDk" secondAttribute="bottom" id="4uv-zS-Vmd"/>
+                        <constraint firstItem="vfp-XB-JDk" firstAttribute="leading" secondItem="MKk-f1-CJS" secondAttribute="leading" constant="70" id="A4f-B0-bnM"/>
+                        <constraint firstItem="vfp-XB-JDk" firstAttribute="top" secondItem="MKk-f1-CJS" secondAttribute="top" constant="99" id="Rla-w1-kMz"/>
+                        <constraint firstItem="MKk-f1-CJS" firstAttribute="trailing" secondItem="vfp-XB-JDk" secondAttribute="trailing" constant="62" id="ZwE-hF-chx"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="MKk-f1-CJS"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="5634.7826086956529" y="738.58695652173924"/>
+            <point key="canvasLocation" x="5615.9420289855079" y="1104.6195652173915"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bHf-md-Xue">
@@ -955,7 +1065,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDF-5L-hH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029" y="742"/>
+            <point key="canvasLocation" x="3012" y="1106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BoV-ur-sa4">
@@ -973,7 +1083,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0v0-4s-Kgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3013.04347826087" y="-776.08695652173924"/>
+            <point key="canvasLocation" x="3012" y="-965"/>
         </scene>
     </scenes>
     <resources>
@@ -981,6 +1091,6 @@
         <image name="home" width="37.5" height="37.5"/>
         <image name="iconVisit" width="72" height="72"/>
         <image name="menu" width="3456" height="5184"/>
-        <image name="signIn" width="75" height="75"/>
+        <image name="signIn" width="37.5" height="37.5"/>
     </resources>
 </document>
