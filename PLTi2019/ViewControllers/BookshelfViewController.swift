@@ -20,7 +20,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     // MARK: Property
     private let reuseIdentifier = "bookCell"
     var duration = Duration()
-    var selectedBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+    var selectedBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
     var booksArray = [Book]()
     var currentBooks = [Book]() // update book
     var chooseBooks = [Book]() //choose book
@@ -29,6 +29,8 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     var selectBookIndex: Int = 0 // get row selected for update array
     
     var indexPath: IndexPath?
+    
+    var itemCount: Int = 0
     
     var getEmailToCheck: String = ""
     var user_id: String = ""
@@ -39,14 +41,16 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         setupCollectionView()
         setupNavBar()
         setupBook()
-        self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        var myDate = Date() 
+        myDate.changeDays(by: 20)
+        datePicker.maximumDate = myDate
+        datePicker.backgroundColor = .white
+        datePicker.setValue(UIColor.red, forKey:"textColor")
+        datePicker.tintColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.currentBooks.removeAll()
-        
         // check login
         let userDefault = UserDefaults.standard
         getEmailToCheck = userDefault.string(forKey: "email") ?? ""
@@ -61,7 +65,6 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             // show itembuttom Logout
             itemButtonLogin.image = UIImage(named: "signOut")
         }
-        
     }
     
     // MARK : Function
@@ -88,11 +91,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     func setupBook() {
-        ApiService.shared.apiListBooks(book_id: "", user_login: "", success: { (books) in
+        ApiService.shared.apiListBooks(book_id: "", user_login: "", borrowDate: "", returnBook: "", success: { (books) in
             guard books.count > 0 else {
                 return
             }
-            
             self.booksArray = books // (tap mượn, không mượn)
             
             self.currentBooks = books.filter({ (book) -> Bool in
@@ -102,6 +104,8 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             self.chooseBooks = books.filter({ (book) -> Bool in
                 book.isBorrow == true  // mượn sách
             })
+            
+            self.itemCount = self.currentBooks.count
             
             self.bookCV.reloadData()
         }) { (err) in
@@ -124,6 +128,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             return Book.name.lowercased().contains(trimmedBook.lowercased())
         })
         
+        self.itemCount = self.currentBooks.count
         self.bookCV.reloadData()
     }
     
@@ -152,6 +157,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             break
         }
         
+        self.itemCount = self.currentBooks.count
         self.bookCV.reloadData()
     }
     
@@ -184,23 +190,35 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
  
     @IBAction func borrowBook(_ sender: Any) {
-        // send infor of selected book and duration to api
-        print(self.duration.day)
         
-        if getEmailToCheck != "", user_id != "", selectedBook.isBorrow == false {
-            // push
-            print("da dang nhap rui, cho phep muon")
-            animateOut()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
+        // send infor of selected book and duration to api
+        var dateBook = "\(Date())"
+        let calendar = Calendar.current
+        var component = DateComponents()
+        let components = calendar.dateComponents([.day,.month,.year, .hour, .minute], from: self.datePicker.date)
+        if let day = components.day, let month = components.month, let year = components.year, let hour = components.hour, let minute = components.minute {
+            component.day = day
+            component.month = month
+            component.year = year
+            component.hour = hour
+            component.minute = minute
             
+            let componentToDate = calendar.date(from: component)!
+            dateBook = dateFormatter.string(from: componentToDate)
+        }
+        
+        // check return book
+        if getEmailToCheck != "", user_id != "", selectedBook.isBorrow == false {
+            animateOut()
             // save date_borrow to db
-            ApiService.shared.apiListBooks(book_id: selectedBook.id, user_login: user_id, success: { (listBookBorrow) in
+            ApiService.shared.apiListBooks(book_id: selectedBook.id, user_login: user_id, borrowDate: "", returnBook: dateBook, success: { (listBookBorrow) in
                 print("Update database")
             }) { (err) in
                 print("Error \(err.localizedDescription)")
             }
             let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
-            
-//            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 self.currentBooks = self.booksArray.filter({ (book) -> Bool in
                     book.id != self.selectedBook.id && book.isBorrow == false
@@ -213,16 +231,17 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
                     }
                 }
                 
-                // update currentBooks
-                self.currentBooks[self.selectBookIndex].isBorrow = true
+                self.bookCV.performBatchUpdates({
+                    if self.indexPath != nil {
+                        self.currentBooks.remove(at: (self.indexPath?.row)!)
+                        self.itemCount -= 1
+                        self.bookCV.deleteItems(at: [self.indexPath!])
+                    } else {
+                        self.currentBooks[self.selectBookIndex].isBorrow = true
+                        self.bookCV.reloadData()
+                    }
+                }, completion: nil)
                 
-                // update item select to choosebook
-                self.bookCV.reloadData()
-//                if self.indexPath != nil {
-//                    self.bookCV.reloadItems(at: [self.indexPath!])
-//                } else {
-//                    self.bookCV.reloadData()
-//                }
                 
             }))
             self.present(alert, animated: true, completion: nil)
@@ -271,22 +290,22 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: sender.date)
-        
-        if let day = components.day, let month = components.month, let year = components.year {
+        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
+        if let day = components.day, let month = components.month, let year = components.year, let hour = components.hour, let minute = components.minute {
             duration.day = day
             duration.month = month
             duration.year = year
+            duration.hour = hour
+            duration.minute = minute
         }
     }
-    
 }
 
 //MARK: Extention
-
 extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.currentBooks.count
+//        return self.currentBooks.count
+        return self.itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -295,8 +314,8 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.bookName.text = currentBooks[indexPath.row].name
         cell.author.text = currentBooks[indexPath.row].author
         let url = URL(string: currentBooks[indexPath.row].image)
-        let data = try? Data(contentsOf: url!)
-        if data != nil {
+        if url != nil {
+            let data = try? Data(contentsOf: url!)
             cell.bookImg.image = UIImage(data: data!)
         } else {
             cell.bookImg.image = UIImage(named: "bookDefault")
@@ -306,47 +325,59 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.view.backgroundColor = UIColor.darkGray
-        // show popUp
-        self.animateIn()
         
-        // get information of selected book
-//        let currentCell = collectionView.cellForItem(at: indexPath) as! BookshelfCollectionViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
+        let dateBook = dateFormatter.string(from: Date())
         
-//        self.selectedBook = currentBooks[indexPath.row]
-//        self.selectedBook.name = currentCell.bookName.text!
-//        self.selectedBook.author = currentCell.author.text!
-//        self.selectedBook.id = currentCell.id.text!
-        
-        self.selectBookIndex = indexPath.row
-        
-        self.indexPath = indexPath
-        
-//        print(self.selectedBook.name)
-//        print("da login \(getEmailToCheck)")
-        if getEmailToCheck != "" {
-//            chooseBooks.append(self.selectedBook)
-            self.selectedBook = currentBooks[indexPath.row]
-            chooseBooks.append(currentBooks[indexPath.row])
+        // check return book
+        if getEmailToCheck != "", user_id == self.currentBooks[indexPath.row].user_borrow_id, self.currentBooks[indexPath.row].isBorrow == true {
+            // hide popUp
+            animateOut()
+            // show alert
+            let alertVC = UIAlertController(title: "", message: "Do you want to return book", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
+                // sent request update return_date
+                // save date_borrow to db
+                ApiService.shared.apiListBooks(book_id: self.currentBooks[indexPath.row].id, user_login: self.user_id, borrowDate: "", returnBook: dateBook, success: { (listBookBorrow) in
+                }) { (err) in
+                    print("Error \(err.localizedDescription)")
+                }
+                
+                self.bookCV.performBatchUpdates({
+                    self.booksArray[indexPath.row].isBorrow = false // update isBorrow bookArray, show tap All
+                    self.currentBooks.remove(at: (indexPath.row))
+                    self.chooseBooks.remove(at: indexPath.row)
+                    self.itemCount -= 1
+                    self.bookCV.deleteItems(at: [indexPath])
+                }, completion: nil)
+                self.bookCV.reloadData()
+                
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+            
+        } else if self.currentBooks[indexPath.row].isBorrow == true {
+            // hide popUp
+            animateOut()
+            // show alert
+            let alertVC = UIAlertController(title: "", message: "This book will be returned at \(self.currentBooks[indexPath.row].date_return)", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
         } else {
-            chooseBooks.removeAll()
+            // show popUp
+            self.animateIn()
+            
+            self.selectBookIndex = indexPath.row
+            
+            self.indexPath = indexPath
+            if getEmailToCheck != "" {
+                self.selectedBook = currentBooks[indexPath.row]
+                chooseBooks.append(currentBooks[indexPath.row])
+            } else {
+                chooseBooks.removeAll()
+            }
         }
-        //
-        //        let cell = collectionView.cellForItem(at: indexPath)
-        
-        //        Briefly fade the cell on selection
-        //        UIView.animate(withDuration: 0.5,
-        //                       animations: {
-        //                        //Fade-out
-        //                        cell?.alpha = 0.5
-        //        }) { (completed) in
-        //            UIView.animate(withDuration: 0.5,
-        //                           animations: {
-        //                            //Fade-out
-        //                            cell?.alpha = 1
-        //            })
-        //        }
-        
-        
     }
 }
 
@@ -357,3 +388,4 @@ extension BookshelfViewController: selectBookDelegate {
         }
     }
 }
+

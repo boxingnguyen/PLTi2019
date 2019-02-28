@@ -76,3 +76,9 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension Date {
+    mutating func changeDays(by days: Int) {
+        self = Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+}
