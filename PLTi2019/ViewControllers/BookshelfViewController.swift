@@ -42,7 +42,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         setupNavBar()
         setupBook()
         var maxDate = Date()
-        maxDate.changeDays(by: 20)
+        maxDate.changeDays(by: 15)
         datePicker.maximumDate = maxDate
         
         var minDate = Date()
@@ -248,8 +248,6 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
                 
                 self.bookCV.performBatchUpdates({
                     if self.indexPath != nil {
-                        print("self.indexPath?.row \(self.indexPath?.row)")
-//                        self.currentBooks.remove(at: (self.indexPath?.row)!)
                         self.bookCV.deleteItems(at: [self.indexPath!])
                         self.itemCount -= 1
                     } else {
