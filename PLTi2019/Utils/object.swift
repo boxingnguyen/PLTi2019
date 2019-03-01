@@ -15,14 +15,19 @@ class Book {
     var image:          String = ""
     var catergory:      BookType
     var isBorrow:       Bool = false
+    var user_borrow_id: String = ""
+    var date_borrow:    String = ""
+    var date_return:    String = ""
+    var detail:         String = ""
     
-    init(id: String, name: String, author: String, image: String, catergory: BookType, isBorrow: Bool) {
+    init(id: String, name: String, author: String, image: String, catergory: BookType, isBorrow: Bool, user_borrow_id: String) {
         self.id = id
         self.name = name
         self.author = author
         self.image = image
         self.catergory = catergory
         self.isBorrow = isBorrow
+        self.user_borrow_id = user_borrow_id
     }
 }
 
@@ -30,6 +35,8 @@ class Duration {
     var day:            Int = 0
     var month:          Int = 0
     var year:           Int = 0
+    var hour:           Int = 0
+    var minute:         Int = 0
 }
 
 enum BookType: String {

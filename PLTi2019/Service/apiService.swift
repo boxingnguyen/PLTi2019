@@ -22,7 +22,7 @@ class ApiService: NSObject {
             "Accept": "application/json"
         ]
         
-        print(endPoint)
+//        print(endPoint)
         
         Alamofire.request(endPoint, method: HTTPMethod.post, parameters: options, encoding: URLEncoding.default, headers: header).responseJSON { (respones) in
             
@@ -66,7 +66,8 @@ class ApiService: NSObject {
             endPoint = endPoint + "?"
             
             for (k, v) in options {
-                let escapedString = v.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+                let escapedString =
+                    v.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
                 endPoint += "\(k)=\(escapedString!)&"
             }
         }
@@ -147,20 +148,18 @@ class ApiService: NSObject {
         }
     }
     
-    func apiListBooks(book_id: String, user_login: String, success: @escaping(_ result: [Book]) -> Void, error: @escaping(Error) -> Void) {
-        // check login
-        let userDefault = UserDefaults.standard
-        _ = userDefault.string(forKey: "id") ?? ""
+    func apiListBooks(book_id: String, user_login: String, borrowDate: String, returnBook: String, success: @escaping(_ result: [Book]) -> Void, error: @escaping(Error) -> Void) {
         
         // Khong truyen len gi co nghia show all 50 quyen 1
         let options: [String: String] = [
             "id": book_id,
-            "user_id2": user_login
+            "user_id2": user_login,
+            "date_return" : returnBook
         ]
-        apiGet(path: "/api/REST/Books.json", options: options, success: { (jsons) in
+        apiGet(path: "/api/REST/Books/chiNhi.json", options: options, success: { (jsons) in
             var listBooks = [Book]()
             jsons["Book"].forEach({ (_, json) in
-                let listBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+                let listBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
                 listBook.id = json["id"].string ?? ""
                 listBook.name = json["name_book"].string ?? ""
                 listBook.author = json["author"].string ?? ""
@@ -183,19 +182,11 @@ class ApiService: NSObject {
                 } else {
                     listBook.isBorrow = true
                 }
+                listBook.user_borrow_id = json["user_id2"].string ?? ""
                 
-//                print("url \(listBook.image)")
-//                listBook.catergory = json["category"].string ?? ""
-//                print("lít ame \(listBook.name)")
-//                print("Date \(json["Book"]["date_borrow"])")
-//                if json["Book"]["user_id2"].string == emailDefault {
-//                    print("da muon")
-//                    listBook.isBorrow = true
-//                } else {
-//                    print("chua dc muon")
-//                    listBook.isBorrow = false
-//                }
-//
+                listBook.date_borrow = json["date_borrow"].string ?? ""
+                listBook.date_return = json["date_return"].string ?? ""
+                listBook.detail = json["detail"].string ?? ""
                 listBooks.append(listBook)
             })
             

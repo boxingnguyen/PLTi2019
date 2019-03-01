@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnForgotPass: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
     
-    var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false)
+    var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
     var delegate: selectBookDelegate?
     
     @IBAction func btnLoginTouch(_ sender: Any) {
