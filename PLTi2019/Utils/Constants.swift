@@ -9,3 +9,5 @@ import UIKit
 import Foundation
 
 let GREEN_THEME = UIColor.rgb(r: 109, g: 201, b: 149)
+var visitMode = false
+var checkViewByBeacon: String = ""

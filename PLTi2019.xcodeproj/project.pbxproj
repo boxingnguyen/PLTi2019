@@ -12,8 +12,15 @@
 		06B99DEE22278F4B0062FC4B /* ProfileBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B99DED22278F4B0062FC4B /* ProfileBookViewController.swift */; };
 		5B1A1D76221E7CD00066167F /* Collection3dViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */; };
 		5B43F5502223A15A00D74FD3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */; };
+		06BFAE44221E5368004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		06BFAE46221E53CB004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		5B04525322252541002AF8B0 /* apiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04525222252541002AF8B0 /* apiService.swift */; };
+		5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0452572225266F002AF8B0 /* ConstansBook.swift */; };
+		5B04525C222528F8002AF8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04525B222528F8002AF8B0 /* Default-568h@2x.png */; };
 		5B4B4D082201B30E006B03A3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B4D072201B30E006B03A3 /* Api.swift */; };
 		5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4EF484221282B80034B61A /* HomeViewController.swift */; };
+		5B60B95F22262F3F00DFB680 /* Collection3dViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */; };
+		5B60B9632226318C00DFB680 /* Image3dPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */; };
 		5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D865121FAF164003E525B /* AppDelegate.swift */; };
 		5B6D865C21FAF168003E525B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */; };
 		5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D866421FAF258003E525B /* LoginViewController.swift */; };
@@ -41,12 +48,17 @@
 		06B99DED22278F4B0062FC4B /* ProfileBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBookViewController.swift; sourceTree = "<group>"; };
 		5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection3dViewController.swift; sourceTree = "<group>"; };
 		5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5B04525222252541002AF8B0 /* apiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = apiService.swift; path = PLTi2019/Service/apiService.swift; sourceTree = SOURCE_ROOT; };
+		5B0452572225266F002AF8B0 /* ConstansBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstansBook.swift; path = PLTi2019/Global/ConstansBook.swift; sourceTree = SOURCE_ROOT; };
+		5B04525B222528F8002AF8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5B04525F22252AC3002AF8B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B4B4D072201B30E006B03A3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5B4EF484221282B80034B61A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection3dViewCell.swift; sourceTree = "<group>"; };
+		5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image3dPrinterViewController.swift; sourceTree = "<group>"; };
 		5B6D864E21FAF164003E525B /* PLTi2019.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLTi2019.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6D865121FAF164003E525B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B6D865B21FAF168003E525B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5B6D865D21FAF168003E525B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B6D866421FAF258003E525B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5B6F00D5221C1BA000A840F7 /* VisitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitViewController.swift; sourceTree = "<group>"; };
 		5B6F00DA221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YouTubeiOSPlayerHelper.framework; path = Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework; sourceTree = "<group>"; };
@@ -97,11 +109,28 @@
 			);
 			name = Service;
 			path = "New Group1";
+		5B04525122252504002AF8B0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5B04525222252541002AF8B0 /* apiService.swift */,
+			);
+			name = Service;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		5B04525622252651002AF8B0 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				5B0452572225266F002AF8B0 /* ConstansBook.swift */,
+			);
+			name = Global;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		5B6D864521FAF164003E525B = {
 			isa = PBXGroup;
 			children = (
+				5B04525B222528F8002AF8B0 /* Default-568h@2x.png */,
 				5B6D865021FAF164003E525B /* PLTi2019 */,
 				5B6D864F21FAF164003E525B /* Products */,
 				5B7AD01C221AC97B00374658 /* Frameworks */,
@@ -121,6 +150,8 @@
 			children = (
 				067027D322252D340055452D /* Service */,
 				067027D222252D270055452D /* Global */,
+				5B04525622252651002AF8B0 /* Global */,
+				5B04525122252504002AF8B0 /* Service */,
 				5BDFA82A21FEB5CC00258E88 /* Utils */,
 				5B6D866321FAF237003E525B /* ViewControllers */,
 				5B6D865121FAF164003E525B /* AppDelegate.swift */,
@@ -128,7 +159,7 @@
 				5BC7B74B221C32AE009EF0D9 /* Main.storyboard */,
 				5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */,
 				5BC7B751221C33AF009EF0D9 /* Assets.xcassets */,
-				5B6D865D21FAF168003E525B /* Info.plist */,
+				5B04525F22252AC3002AF8B0 /* Info.plist */,
 			);
 			path = PLTi2019;
 			sourceTree = "<group>";
@@ -148,6 +179,8 @@
 				5B43F54F2223A15A00D74FD3 /* CollectionViewCell.swift */,
 				5B1A1D75221E7CD00066167F /* Collection3dViewController.swift */,
 				06B99DED22278F4B0062FC4B /* ProfileBookViewController.swift */,
+				5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */,
+				5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B6D865C21FAF168003E525B /* LaunchScreen.storyboard in Resources */,
+				5B04525C222528F8002AF8B0 /* Default-568h@2x.png in Resources */,
 				5BC7B752221C33AF009EF0D9 /* Assets.xcassets in Resources */,
 				5BC7B74C221C32AF009EF0D9 /* Main.storyboard in Resources */,
 			);
@@ -271,10 +305,15 @@
 			files = (
 				067027D722252D600055452D /* apiService.swift in Sources */,
 				5BDFA83021FEB9CB00258E88 /* SignUpViewController.swift in Sources */,
+				06BFAE46221E53CB004DE54D /* (null) in Sources */,
 				5BDFA82E21FEB64500258E88 /* Extensions.swift in Sources */,
+				5B60B95F22262F3F00DFB680 /* Collection3dViewCell.swift in Sources */,
+				5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */,
 				5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */,
+				5B60B9632226318C00DFB680 /* Image3dPrinterViewController.swift in Sources */,
 				5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */,
 				5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */,
+				5B04525322252541002AF8B0 /* apiService.swift in Sources */,
 				5BD398CA221427770066FF61 /* object.swift in Sources */,
 				067027D522252D4C0055452D /* ConstansBook.swift in Sources */,
 				5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */,
@@ -282,12 +321,11 @@
 				06B99DEE22278F4B0062FC4B /* ProfileBookViewController.swift in Sources */,
 				5B6F00D6221C1BA000A840F7 /* VisitViewController.swift in Sources */,
 				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
-				5B43F5502223A15A00D74FD3 /* CollectionViewCell.swift in Sources */,
 				5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */,
+				06BFAE44221E5368004DE54D /* (null) in Sources */,
 				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
 				5BF1B5552211258A005B3123 /* HomeCollectionViewCell.swift in Sources */,
-				5B1A1D76221E7CD00066167F /* Collection3dViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +465,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UT85388U7N;
+				DEVELOPMENT_TEAM = XSSZM775S9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -450,6 +489,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UT85388U7N;
+				DEVELOPMENT_TEAM = XSSZM775S9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
