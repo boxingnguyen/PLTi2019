@@ -22,6 +22,10 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mainImgView: UIImageView!
     @IBOutlet weak var finishTourBtn: UIButton!
     
+    var arrImg = [String]()
+    var timerImg : Timer?
+    var i = Int()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,33 +113,69 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
             case 1:
                 checkViewByBeacon = "gate"
                 mainTextView.text = "Welcome to Tribal Tribal Media House Technology Lab. Tribal Media House is a marketing venture whose mission is to 'Create the future of marketing'. This DNA has been inherited. TMH Tech. Lab has been providing not only domestic-class, but also world-class Technology x Marketing solution. \n   Do you realize alphabet and special characters in ours logo? Yes, Marketing x Technnology!"
-                mainImgView.image = UIImage(named: "logoTMH")
+
+                self.arrImg = ["logoTMH", "img3", "img4", "img5"]
+                startTimerImg()
+                
                 buttonPrinter.isHidden = true
                 buttonBook.isHidden = true
             case 2:
                 checkViewByBeacon = "mission"
                 mainTextView.text = "The world is awesome, so many things to discover. Ignite your passion and feel it. \n   There are some behaviour rules you should keep in mind. \n   Finally, be crazy! 😜. Crazy people are more likely to be successful. Why? To think out of box, too foolish to be scared, to have high energy and dare to break the rules."
-
-                self.mainImgView.image = UIImage(named: "mission")
+                
+                self.arrImg = ["mission", "rule", "img1", "img2"]
+                startTimerImg()
+                
                 buttonPrinter.isHidden = true
                 buttonBook.isHidden = true
             case 3:
                 mainTextView.text = "Here is 3d printer. Thanks to Jo president, we can play with it to relax and encourage creativity also. If you need tutorial, touch button below."
-                mainImgView.image = UIImage(named: "component3dPrinter")
-                checkViewByBeacon = "3dTutorial"
+                
+                self.arrImg = ["component3dPrinter", "img6", "img7", "img8"]
+                startTimerImg()
+                
                 buttonPrinter.isHidden = false
                 buttonBook.isHidden = true
             default:
                 checkViewByBeacon = "book"
                 mainTextView.text = "This is open space where held morning meeting, fruit time or TechLab news and some special events like Christmas or women day. We also have lunch here or relax with shuttlecock. \n   Beside you there is ours bookshelf with various categories of books. Touch to button below to visit ours library and borrow book."
-                mainImgView.image = UIImage(named: "bookshelf")
+                
+                self.arrImg = ["bookshelf", "img9", "img10", "img11"]
+                startTimerImg()
+                
                 buttonPrinter.isHidden = true
                 buttonBook.isHidden = false
             }
+        } else {
+            self.i = 0
+            stopTimerImg()
         }
 
     }
     
+    func startTimerImg() {
+        if timerImg == nil {
+            Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(self.imageChange), userInfo: nil, repeats: false)
+        }
+    }
+    
+    func stopTimerImg() {
+        if timerImg != nil {
+            timerImg!.invalidate()
+            timerImg = nil
+        }
+    }
+    
+    @objc func imageChange() {
+        self.mainImgView.image = UIImage(named: arrImg[i])
+        
+        if i < arrImg.count - 1 {
+            print(i)
+            i += 1
+        } else {
+            i = 0
+        }
+    }
 
     @objc func turnBack(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
