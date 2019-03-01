@@ -16,6 +16,15 @@ class Printer3dTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        if visitMode {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
+        }
+    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
    
     @IBAction func backHome(_ sender: Any) {
@@ -39,6 +48,6 @@ class Printer3dTutorialViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setupView()
     }
 }

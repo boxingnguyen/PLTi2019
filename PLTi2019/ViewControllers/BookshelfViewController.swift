@@ -42,7 +42,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         setupNavBar()
         setupBook()
         var maxDate = Date()
-        maxDate.changeDays(by: 20)
+        maxDate.changeDays(by: 15)
         datePicker.maximumDate = maxDate
         
         var minDate = Date()
@@ -52,6 +52,11 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         datePicker.backgroundColor = .white
         datePicker.setValue(UIColor.red, forKey:"textColor")
         datePicker.tintColor = .white
+        self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +98,11 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         searchBar.scopeButtonTitles = ["Comics", "Fiction", "All", "Self-help", "Borrowed"]
         searchBar.selectedScopeButtonIndex = selectedScopeIndex
         self.navigationItem.title = "TMH TechLab Library"
+        
+        if visitMode {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
+        }
     }
     
     func setupBook() {
@@ -238,8 +248,6 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
                 
                 self.bookCV.performBatchUpdates({
                     if self.indexPath != nil {
-                        print("self.indexPath?.row \(self.indexPath?.row)")
-//                        self.currentBooks.remove(at: (self.indexPath?.row)!)
                         self.bookCV.deleteItems(at: [self.indexPath!])
                         self.itemCount -= 1
                     } else {

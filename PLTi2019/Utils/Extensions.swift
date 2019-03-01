@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 extension UIColor {
     static func rgb(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
