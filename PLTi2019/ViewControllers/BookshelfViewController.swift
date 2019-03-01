@@ -41,9 +41,14 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         setupCollectionView()
         setupNavBar()
         setupBook()
-        var myDate = Date() 
-        myDate.changeDays(by: 20)
-        datePicker.maximumDate = myDate
+        var maxDate = Date()
+        maxDate.changeDays(by: 20)
+        datePicker.maximumDate = maxDate
+        
+        var minDate = Date()
+        minDate.changeDays(by: 1)
+        datePicker.minimumDate = minDate
+        
         datePicker.backgroundColor = .white
         datePicker.setValue(UIColor.red, forKey:"textColor")
         datePicker.tintColor = .white
@@ -233,9 +238,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
                 
                 self.bookCV.performBatchUpdates({
                     if self.indexPath != nil {
-                        self.currentBooks.remove(at: (self.indexPath?.row)!)
-                        self.itemCount -= 1
+                        print("self.indexPath?.row \(self.indexPath?.row)")
+//                        self.currentBooks.remove(at: (self.indexPath?.row)!)
                         self.bookCV.deleteItems(at: [self.indexPath!])
+                        self.itemCount -= 1
                     } else {
                         self.currentBooks[self.selectBookIndex].isBorrow = true
                         self.bookCV.reloadData()
@@ -304,7 +310,6 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
 //MARK: Extention
 extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return self.currentBooks.count
         return self.itemCount
     }
     
