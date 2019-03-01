@@ -40,6 +40,11 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         setupNavBar()
         setupBook()
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+
+    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +90,11 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         searchBar.scopeButtonTitles = ["Comics", "Fiction", "All", "Self-help", "Borrowed"]
         searchBar.selectedScopeButtonIndex = selectedScopeIndex
         self.navigationItem.title = "TMH TechLab Library"
+        
+        if visitMode {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
+        }
     }
     
     func setupBook() {

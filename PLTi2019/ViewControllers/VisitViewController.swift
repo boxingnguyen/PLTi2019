@@ -20,26 +20,33 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var buttonBook: UIButton!
     @IBOutlet weak var buttonPrinter: UIButton!
+    @IBOutlet weak var mainTextView: UITextView!
+    @IBOutlet weak var mainImgView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // go around techlab
         visitMode = true
-        
         setupView()
-        DetectBeacon()
+        
         buttonBook.isHidden = true
         buttonPrinter.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DetectBeacon()
     }
     
     func setupView() {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Let's go around!"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "home"), style: .plain, target: self, action: #selector(turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
+        self.mainTextView.sizeToFit()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func changeView() {
         let stboard = UIStoryboard.init(name: "Main", bundle: nil)
         var viewCtr = String()
         
@@ -57,23 +64,22 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
             return
         } else {
             let viewController = stboard.instantiateViewController(withIdentifier: viewCtr)
-            self.navigationController?.pushViewController(viewController, animated: true)
+            self.navigationController?.present(viewController, animated: false )
         }
     }
     
     func DetectBeacon() {
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
         
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedAlways) {
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
         
         rangeBeacons()
     }
     
     func rangeBeacons() {
-        let region = CLBeaconRegion(proximityUUID: uuid, major: major, identifier: identifier)
+        let region = CLBeaconRegion(proximityUUID: uuid, identifier: identifier)
         locationManager.startRangingBeacons(in: region)
 
         //        run at background then notify
@@ -90,38 +96,54 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("abc")
+    }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         let knownBeacons = beacons.filter { $0.proximity != CLProximity.unknown }
         
         if (knownBeacons.count > 0) {
             let closestBeacon = knownBeacons[0] as CLBeacon
-            let beaconMinor = Int(truncating: closestBeacon.minor)
+            let beaconMinor = Int(truncating: closestBeacon.major)
         
             switch beaconMinor {
             case 1:
                 checkViewByBeacon = "gate"
+                mainTextView.text = "Welcome to Tribal Tribal Media House Technology Lab. Tribal Media House is a marketing venture whose mission is to 'Create the future of marketing'. This DNA has been inherited. TMH Tech. Lab has been providing not only domestic-class, but also world-class Technology x Marketing solution. \nDo you realize alphabet and special characters in ours logo? Yes, Marketing x Technnology!"
+                mainImgView.image = UIImage(named: "logoTMH")
+                buttonPrinter.isHidden = true
+                buttonBook.isHidden = true
             case 2:
-                checkViewByBeacon = "book"
-                
-            case 3:
-                checkViewByBeacon = "3dTutorial"
-            default:
                 checkViewByBeacon = "mission"
+                mainTextView.text = "The world is awesome, so many things to discover. Ignite your passion and feel it. \nThere are some behaviour rules you should keep in mind. \nFinally, be crazy! 😜. Crazy people are more likely to be successful. Why? To think out of box, too foolish to be scared, to have high energy and dare to break the rules."
+                
+                
+                let arrayImg = ["mission", "rule", "img1", "img2"]
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    for imgName in arrayImg {
+                        
+                            self.mainImgView.image = UIImage(named: imgName)
+                        
+                    }
+                }
+                buttonPrinter.isHidden = true
+                buttonBook.isHidden = true
+            case 3:
+                checkViewByBeacon = "book"
+                mainTextView.text = "This is open space where held morning meeting, fruit time or TechLab news and some special events like Christmas or women day. We also have lunch here or play shuttlecock. Beside you there is ours bookshelf with various categories of books. Touch to button below to visit ours library and borrow book."
+                mainImgView.image = UIImage(named: "bookshelf")
+                buttonPrinter.isHidden = true
+                buttonBook.isHidden = false
+            default:
+                mainTextView.text = "Here is 3d printer. Thanks to Jo president, we can play with it to relax and encourage creativity also. If you need tutorial, touch button below."
+                mainImgView.image = UIImage(named: "component3dPrinter")
+                checkViewByBeacon = "3dTutorial"
+                buttonPrinter.isHidden = false
+                buttonBook.isHidden = true
             }
         }
-        
-        guard let discoveredBeaconProximity = beacons.first?.proximity else { print("Couldn't find the beacon!"); return}
-        let notification:String = {
-            switch discoveredBeaconProximity {
-            case .immediate: return "immediate"
-            case .near: return "near"
-            case .far: return "far"
-            case .unknown: return "unknown"
-            }
-        }()
 
-        print(notification)
     }
     
 
@@ -141,4 +163,10 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    @IBAction func finishTour(_ sender: Any) {
+        visitMode = false
+        let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let homeVC = stboard.instantiateViewController(withIdentifier: "homeVC")
+        self.navigationController?.pushViewController(homeVC, animated: false)
+    }
 }

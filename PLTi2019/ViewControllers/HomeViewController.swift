@@ -67,8 +67,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             self.navigationController?.pushViewController(visitVC, animated: true)
         case 1:
+            visitMode = false
             self.navigationController?.pushViewController(bookshelfVC, animated: true)
         default:
+            visitMode = false
             self.navigationController?.pushViewController(printer3dVC, animated: true)
         }
     }
