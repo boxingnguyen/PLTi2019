@@ -15,7 +15,7 @@ protocol selectBookDelegate {
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnLoginTouch(_ sender: Any) {
         
-        if let email = username.text, let pass = password.text {
+        if let email = email.text, let pass = password.text {
             // check error input fields
             if email.isEmpty || pass.isEmpty {
                 self.errorLabel.isHidden = false
@@ -40,8 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 user.set(userJson.id, forKey: "id")
                 user.set(userJson.username, forKey: "user")
                 // pop bookshelf
-                self.navigationController?.isNavigationBarHidden = false
-                
+
                 // add book to chooseBook
                 self.delegate?.chooseBookReload(self.selectBook)
                 
@@ -95,11 +94,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginView()
         self.hideKeyboardWhenTappedAround()
-        self.username.delegate = self
+        self.email.delegate = self
         self.password.delegate = self
         
         print("Book \(selectBook.name) and \(selectBook.author)")
@@ -109,7 +112,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
 //        let user = UserDefaults.standard.object(forKey: "user") ?? User()
         self.errorLabel.isHidden = true
-//        print((user as User).username)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.dismissKeyboard()
@@ -119,11 +121,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setupLoginView() {
         btnLogin.layer.cornerRadius = 10
         view.backgroundColor = GREEN_THEME
-        navigationController?.isNavigationBarHidden = true
-        
-        username.textColor = .white
-        username.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        username.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
+        navigationController?.isNavigationBarHidden = false
+
+        // setUp back button and transparent bar
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+
+        email.textColor = .white
+        email.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        email.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
         
         password.isSecureTextEntry = true
         password.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: .white)

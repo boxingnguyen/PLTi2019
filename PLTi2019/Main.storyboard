@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuC-jd-pEb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuC-jd-pEb">
                                 <rect key="frame" x="45" y="385" width="324" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,8 +61,8 @@
                                     </attributedString>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OURS BOOKSHELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFz-s5-NmY">
-                                <rect key="frame" x="99" y="124" width="216" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TMH TechLab Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFz-s5-NmY">
+                                <rect key="frame" x="91" y="124" width="232" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -124,9 +124,9 @@
                         <outlet property="btnForgotPass" destination="Fzo-F8-DjZ" id="4lV-pb-d0M"/>
                         <outlet property="btnLogin" destination="541-dx-gvm" id="7I0-Xi-56G"/>
                         <outlet property="btnSignup" destination="Dx5-fV-MdA" id="nLB-gS-NzR"/>
+                        <outlet property="email" destination="cuC-jd-pEb" id="CDJ-aI-zF7"/>
                         <outlet property="errorLabel" destination="kVQ-Kl-5TF" id="JtN-t2-BcI"/>
                         <outlet property="password" destination="ScO-9N-oaL" id="XqM-FC-piV"/>
-                        <outlet property="username" destination="cuC-jd-pEb" id="UEd-DM-rD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INA-Ax-DcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
