@@ -174,7 +174,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueM-c0-FlR">
-                            <rect key="frame" x="45" y="57" width="222" height="15.666666666666664"/>
+                            <rect key="frame" x="45" y="56.999999999999993" width="222" height="15.666666666666664"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="1" green="0.093322322279999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -301,6 +301,13 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g37-m7-0ut">
+                                <rect key="frame" x="197" y="358" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="4eT-ty-ZXZ"/>
+                                    <constraint firstAttribute="height" constant="20" id="4nk-kI-o2a"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -308,9 +315,11 @@
                             <constraint firstItem="si6-ZZ-T0F" firstAttribute="leading" secondItem="haC-I5-nAQ" secondAttribute="leading" id="CEI-90-rKw"/>
                             <constraint firstItem="or0-4c-zq7" firstAttribute="top" secondItem="haC-I5-nAQ" secondAttribute="top" id="GrM-fX-Zcf"/>
                             <constraint firstItem="si6-ZZ-T0F" firstAttribute="top" secondItem="haC-I5-nAQ" secondAttribute="top" constant="100" id="KZY-on-w9h"/>
+                            <constraint firstItem="g37-m7-0ut" firstAttribute="centerX" secondItem="qha-d2-nD8" secondAttribute="centerX" id="RHi-uN-mVO"/>
                             <constraint firstItem="haC-I5-nAQ" firstAttribute="trailing" secondItem="or0-4c-zq7" secondAttribute="trailing" id="TZK-Yy-ec7"/>
                             <constraint firstItem="si6-ZZ-T0F" firstAttribute="trailing" secondItem="haC-I5-nAQ" secondAttribute="trailing" id="dXr-65-uFQ"/>
                             <constraint firstItem="si6-ZZ-T0F" firstAttribute="bottom" secondItem="haC-I5-nAQ" secondAttribute="bottom" id="hR4-gM-qjm"/>
+                            <constraint firstItem="g37-m7-0ut" firstAttribute="centerY" secondItem="qha-d2-nD8" secondAttribute="centerY" id="rWt-SC-Kmo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="haC-I5-nAQ"/>
                     </view>
@@ -332,6 +341,7 @@
                         <outlet property="bookCV" destination="si6-ZZ-T0F" id="LfW-a0-pY3"/>
                         <outlet property="borrowBookView" destination="kvO-Pz-61a" id="cby-Rz-ct7"/>
                         <outlet property="datePicker" destination="ap0-Zs-f4i" id="MCR-na-8QQ"/>
+                        <outlet property="indicatorView" destination="g37-m7-0ut" id="FLW-OH-xlm"/>
                         <outlet property="itemButtonLogin" destination="aXH-a3-E6i" id="xtj-PL-Q8K"/>
                         <outlet property="searchBar" destination="or0-4c-zq7" id="AW6-ey-EhC"/>
                         <outlet property="visualEffectView" destination="HlJ-2G-UvX" id="R0M-Kz-ZaW"/>
