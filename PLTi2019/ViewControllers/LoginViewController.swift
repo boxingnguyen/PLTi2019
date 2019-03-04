@@ -15,18 +15,21 @@ protocol selectBookDelegate {
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet var forgotView: UIView!
+    @IBOutlet weak var forgotEmail: UITextField!
+    @IBOutlet weak var forgotErrorMesg: UILabel!
     
     var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
     var delegate: selectBookDelegate?
     
     @IBAction func btnLoginTouch(_ sender: Any) {
         
-        if let email = username.text, let pass = password.text {
+        if let email = email.text, let pass = password.text {
             // check error input fields
             if email.isEmpty || pass.isEmpty {
                 self.errorLabel.isHidden = false
@@ -40,8 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 user.set(userJson.id, forKey: "id")
                 user.set(userJson.username, forKey: "user")
                 // pop bookshelf
-                self.navigationController?.isNavigationBarHidden = false
-                
+
                 // add book to chooseBook
                 self.delegate?.chooseBookReload(self.selectBook)
                 
@@ -51,56 +53,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("Loi \(err.localizedDescription)")
                 self.errorLabel.isHidden = false
                 return
-//                let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//                self.errorLabel.isHidden = false
             }
-            
-            
-//            Api.shared.login(username: name, password: pass, success: { (deptrai) in
-//                // deptrai is variable store user information
-//                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-//                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
-//
-//                if name.isEmpty || pass.isEmpty {
-//                    self.errorLabel.isHidden = false
-//                    return
-//                }
-//
-//                self.errorLabel.isHidden = true
-//                let userDefaults = UserDefaults.standard
-//
-//                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
-//                    do {
-//                        // test using userDefault var while have not api yet
-//                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
-//
-//                        if name == user.username && pass == user.password {
-//                            self.navigationController?.pushViewController(bookshelf, animated: true)
-//                        } else {
-//                            print("show error")
-//                            self.errorLabel.isHidden = false
-//                        }
-//                    } catch {
-//                        print("Couldn't get user")
-//                    }
-//                } else {
-//                    self.errorLabel.isHidden = false
-//                }
-//
-//            }) { (Error) in
-//                print("a du")
-//            }
         }
+    }
+    
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginView()
         self.hideKeyboardWhenTappedAround()
-        self.username.delegate = self
+        self.email.delegate = self
         self.password.delegate = self
+        self.forgotEmail.delegate = self
         
         print("Book \(selectBook.name) and \(selectBook.author)")
         
@@ -109,7 +76,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
 //        let user = UserDefaults.standard.object(forKey: "user") ?? User()
         self.errorLabel.isHidden = true
-//        print((user as User).username)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.dismissKeyboard()
@@ -119,11 +85,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setupLoginView() {
         btnLogin.layer.cornerRadius = 10
         view.backgroundColor = GREEN_THEME
-        navigationController?.isNavigationBarHidden = true
-        
-        username.textColor = .white
-        username.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        username.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
+        navigationController?.isNavigationBarHidden = false
+
+        // setUp back button and transparent bar
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+
+        email.textColor = .white
+        email.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        email.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
         
         password.isSecureTextEntry = true
         password.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: .white)
@@ -139,5 +113,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes:
             [NSAttributedString.Key.foregroundColor: UIColor.white,
              NSAttributedString.Key.font: font]))
+        
+        forgotEmail.attributedPlaceholder = NSAttributedString(string: "Your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        forgotEmail.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
     }
+    
+    @IBAction func btnForgotPass(_ sender: Any) {
+        showForgotView()
+    }
+    
+    func showForgotView() {
+        forgotView.frame = self.view.frame
+        forgotView.backgroundColor = GREEN_THEME
+        forgotErrorMesg.isHidden = true
+        self.view.addSubview(forgotView)
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
+
+    
+    @IBAction func forgotBtnCancel(_ sender: Any) {
+        self.forgotView.removeFromSuperview()
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    
+    @IBAction func forgotSumbit(_ sender: Any) {
+        if self.forgotEmail.text!.isEmpty  {
+            forgotErrorMesg.text = "Email can't not be blank!"
+            forgotErrorMesg.isHidden = false
+            return
+        }
+
+        if !isValidEmail(testStr: self.forgotEmail.text!) {
+            forgotErrorMesg.text = "Your email address is invalid, please check!"
+            forgotErrorMesg.isHidden = false
+            return
+        }
+        
+        forgotErrorMesg.isHidden = true
+        let lostEmail = self.forgotEmail.text!
+        print(lostEmail)
+
+        // send api to send email
+    }
+    
+
 }

@@ -17,13 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuC-jd-pEb">
-                                <rect key="frame" x="45" y="385" width="324" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScO-9N-oaL">
                                 <rect key="frame" x="45" y="440" width="324" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,9 +53,12 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="btnForgotPass:" destination="QJL-B2-nny" eventType="touchUpInside" id="So0-i3-Mdy"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OURS BOOKSHELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFz-s5-NmY">
-                                <rect key="frame" x="99" y="124" width="216" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TMH TechLab Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFz-s5-NmY">
+                                <rect key="frame" x="91" y="124" width="232" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -90,6 +86,13 @@
                                 <color key="textColor" red="1" green="0.093322322275342873" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuC-jd-pEb">
+                                <rect key="frame" x="45" y="385" width="324" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.37722233562936058" green="0.78218102331606221" blue="0.58069093887401102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,12 +127,79 @@
                         <outlet property="btnForgotPass" destination="Fzo-F8-DjZ" id="4lV-pb-d0M"/>
                         <outlet property="btnLogin" destination="541-dx-gvm" id="7I0-Xi-56G"/>
                         <outlet property="btnSignup" destination="Dx5-fV-MdA" id="nLB-gS-NzR"/>
+                        <outlet property="email" destination="cuC-jd-pEb" id="CDJ-aI-zF7"/>
                         <outlet property="errorLabel" destination="kVQ-Kl-5TF" id="JtN-t2-BcI"/>
+                        <outlet property="forgotEmail" destination="ldl-hN-IQB" id="rDS-f2-tut"/>
+                        <outlet property="forgotErrorMesg" destination="ueM-c0-FlR" id="zgF-E9-zll"/>
+                        <outlet property="forgotView" destination="Qca-5J-iSV" id="2PA-93-ra2"/>
                         <outlet property="password" destination="ScO-9N-oaL" id="XqM-FC-piV"/>
-                        <outlet property="username" destination="cuC-jd-pEb" id="UEd-DM-rD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INA-Ax-DcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Qca-5J-iSV">
+                    <rect key="frame" x="0.0" y="0.0" width="312" height="176"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldl-hN-IQB">
+                            <rect key="frame" x="45" y="23" width="222" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hq-Ql-QNU">
+                            <rect key="frame" x="89" y="98" width="55" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Submit">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="forgotSumbit:" destination="QJL-B2-nny" eventType="touchUpInside" id="m6z-Tw-pEZ"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill in your email." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgo-Qq-Sl2">
+                            <rect key="frame" x="16" y="-33" width="280" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ett-lg-gdH">
+                            <rect key="frame" x="179" y="98" width="53" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="forgotBtnCancel:" destination="QJL-B2-nny" eventType="touchUpInside" id="ead-vc-bSx"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueM-c0-FlR">
+                            <rect key="frame" x="45" y="57" width="222" height="15.666666666666664"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="1" green="0.093322322279999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.37722233560000001" green="0.78218102329999994" blue="0.58069093890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="ueM-c0-FlR" firstAttribute="top" secondItem="ldl-hN-IQB" secondAttribute="bottom" constant="4" id="BSZ-NR-T00"/>
+                        <constraint firstItem="ueM-c0-FlR" firstAttribute="leading" secondItem="ldl-hN-IQB" secondAttribute="leading" id="Ddt-by-sbQ"/>
+                        <constraint firstItem="1hq-Ql-QNU" firstAttribute="top" secondItem="ldl-hN-IQB" secondAttribute="bottom" constant="45" id="F4k-HY-9lm"/>
+                        <constraint firstItem="1hq-Ql-QNU" firstAttribute="centerX" secondItem="bY1-UK-vCC" secondAttribute="centerX" constant="-39.5" id="FSl-6W-8vK"/>
+                        <constraint firstItem="ldl-hN-IQB" firstAttribute="centerX" secondItem="bY1-UK-vCC" secondAttribute="centerX" id="G7r-yA-Sda"/>
+                        <constraint firstItem="Fgo-Qq-Sl2" firstAttribute="leading" secondItem="bY1-UK-vCC" secondAttribute="leading" constant="16" id="M3x-qb-pGb"/>
+                        <constraint firstItem="ueM-c0-FlR" firstAttribute="trailing" secondItem="ldl-hN-IQB" secondAttribute="trailing" id="Tih-7q-owB"/>
+                        <constraint firstItem="ldl-hN-IQB" firstAttribute="centerY" secondItem="bY1-UK-vCC" secondAttribute="centerY" constant="-50" id="UFZ-ab-KFL"/>
+                        <constraint firstItem="ldl-hN-IQB" firstAttribute="top" secondItem="Fgo-Qq-Sl2" secondAttribute="bottom" constant="35" id="WSl-Y2-DyS"/>
+                        <constraint firstItem="Ett-lg-gdH" firstAttribute="leading" secondItem="1hq-Ql-QNU" secondAttribute="trailing" constant="35" id="X4y-qg-Pqa"/>
+                        <constraint firstItem="bY1-UK-vCC" firstAttribute="trailing" secondItem="ldl-hN-IQB" secondAttribute="trailing" constant="45" id="aeF-Fj-d4z"/>
+                        <constraint firstItem="1hq-Ql-QNU" firstAttribute="bottom" secondItem="Ett-lg-gdH" secondAttribute="bottom" id="ap9-BO-wT3"/>
+                        <constraint firstItem="ldl-hN-IQB" firstAttribute="leading" secondItem="bY1-UK-vCC" secondAttribute="leading" constant="45" id="neW-EM-9nk"/>
+                        <constraint firstItem="1hq-Ql-QNU" firstAttribute="top" secondItem="Ett-lg-gdH" secondAttribute="top" id="o5s-R3-7Um"/>
+                        <constraint firstItem="bY1-UK-vCC" firstAttribute="trailing" secondItem="Fgo-Qq-Sl2" secondAttribute="trailing" constant="16" id="w6o-dR-KdZ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="bY1-UK-vCC"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="5616" y="0.0"/>
         </scene>
@@ -421,6 +491,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQn-uN-GSC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6448" y="0.0"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GjH-RI-rHN">
+            <objects>
+                <viewController id="I7L-FK-GNU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zW3-st-UD5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2o-3N-R70">
+                                <rect key="frame" x="159" y="123" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.37722233560000001" green="0.78218102329999994" blue="0.58069093890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="48P-ux-v2d"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CbS-zm-Qs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7471" y="0.0"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uwj-Or-bbL">

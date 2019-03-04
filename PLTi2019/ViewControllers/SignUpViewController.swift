@@ -67,13 +67,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         invalidEmail.isHidden = true
         blankFieldErr.isHidden = true
         
-//        @available(iOS 12.0, *) {
-//            let passwordRuleDescription = "required: lower; required: upper; required: digit; minlength: 6; maxlength: 16;"
-//            let passwordRules = UITextInputPasswordRules(descriptor: passwordRuleDescription)
-//            password.passwordRules = passwordRules
-//        }
+        // setUp back button and transparent bar
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(self.turnBack(_:)))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
+    @objc func turnBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         self.dismissKeyboard()
@@ -111,7 +116,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             ApiService.shared.apiRegister(user: username, email: email, pass: password, success: { (userJson) in
                 print("User \(userJson)")
                 
-                let alert = UIAlertController(title: "Success", message: "You have successfully registered", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Success", message: "You have signed up successfully!", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     //come back login
                     self.navigationController?.popViewController(animated: true)

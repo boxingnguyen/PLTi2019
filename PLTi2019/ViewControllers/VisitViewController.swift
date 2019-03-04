@@ -114,7 +114,7 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
                 checkViewByBeacon = "gate"
                 mainTextView.text = "Welcome to Tribal Tribal Media House Technology Lab. Tribal Media House is a marketing venture whose mission is to 'Create the future of marketing'. This DNA has been inherited. TMH Tech. Lab has been providing not only domestic-class, but also world-class Technology x Marketing solution. \n   Do you realize alphabet and special characters in ours logo? Yes, Marketing x Technnology!"
 
-                self.arrImg = ["logoTMH", "img3", "img4", "img5"]
+                self.arrImg = ["logoTMH"]
                 startTimerImg()
                 
                 buttonPrinter.isHidden = true
