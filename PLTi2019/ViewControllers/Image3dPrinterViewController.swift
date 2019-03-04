@@ -101,7 +101,7 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     }
     
     func showLargeImg(index: Int) {
-        self.view.addSubview(largeImg)
+        self.view.addSubview(largeImgView)
         largeImgView.center = self.view.center
         largeImgView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
         largeImgView.alpha = 0
@@ -112,7 +112,6 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
             self.largeImgView.alpha = 1
             self.largeImgView.transform = CGAffineTransform.identity
         }
-        
     }
 }
 

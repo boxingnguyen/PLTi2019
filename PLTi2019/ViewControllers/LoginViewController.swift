@@ -20,6 +20,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var btnForgotPass: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet var forgotView: UIView!
+    @IBOutlet weak var forgotEmail: UITextField!
+    @IBOutlet weak var forgotErrorMesg: UILabel!
     
     var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
     var delegate: selectBookDelegate?
@@ -50,47 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("Loi \(err.localizedDescription)")
                 self.errorLabel.isHidden = false
                 return
-//                let alert = UIAlertController(title: "", message: "You have successfully borrowed books", preferredStyle: UIAlertController.Style.alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//                self.errorLabel.isHidden = false
             }
-            
-            
-//            Api.shared.login(username: name, password: pass, success: { (deptrai) in
-//                // deptrai is variable store user information
-//                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
-//                let bookshelf = stboard.instantiateViewController(withIdentifier: "bookshelfVC") as! BookshelfViewController
-//
-//                if name.isEmpty || pass.isEmpty {
-//                    self.errorLabel.isHidden = false
-//                    return
-//                }
-//
-//                self.errorLabel.isHidden = true
-//                let userDefaults = UserDefaults.standard
-//
-//                if let decodedUser = userDefaults.object(forKey: "user") as? Data {
-//                    do {
-//                        // test using userDefault var while have not api yet
-//                        let user = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decodedUser) as! User
-//
-//                        if name == user.username && pass == user.password {
-//                            self.navigationController?.pushViewController(bookshelf, animated: true)
-//                        } else {
-//                            print("show error")
-//                            self.errorLabel.isHidden = false
-//                        }
-//                    } catch {
-//                        print("Couldn't get user")
-//                    }
-//                } else {
-//                    self.errorLabel.isHidden = false
-//                }
-//
-//            }) { (Error) in
-//                print("a du")
-//            }
         }
     }
     
@@ -104,6 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         self.email.delegate = self
         self.password.delegate = self
+        self.forgotEmail.delegate = self
         
         print("Book \(selectBook.name) and \(selectBook.author)")
         
@@ -149,5 +113,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes:
             [NSAttributedString.Key.foregroundColor: UIColor.white,
              NSAttributedString.Key.font: font]))
+        
+        forgotEmail.attributedPlaceholder = NSAttributedString(string: "Your email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        forgotEmail.setBottomBorder(backGroundColor: GREEN_THEME, borderColor: UIColor.white)
     }
+    
+    @IBAction func btnForgotPass(_ sender: Any) {
+        showForgotView()
+    }
+    
+    func showForgotView() {
+        forgotView.frame = self.view.frame
+        forgotView.backgroundColor = GREEN_THEME
+        forgotErrorMesg.isHidden = true
+        self.view.addSubview(forgotView)
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
+
+    
+    @IBAction func forgotBtnCancel(_ sender: Any) {
+        self.forgotView.removeFromSuperview()
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    
+    @IBAction func forgotSumbit(_ sender: Any) {
+        if self.forgotEmail.text!.isEmpty  {
+            forgotErrorMesg.text = "Email can't not be blank!"
+            forgotErrorMesg.isHidden = false
+            return
+        }
+
+        if !isValidEmail(testStr: self.forgotEmail.text!) {
+            forgotErrorMesg.text = "Your email address is invalid, please check!"
+            forgotErrorMesg.isHidden = false
+            return
+        }
+        
+        forgotErrorMesg.isHidden = true
+        let lostEmail = self.forgotEmail.text!
+        print(lostEmail)
+
+        // send api to send email
+    }
+    
+
 }
