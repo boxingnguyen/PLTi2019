@@ -70,6 +70,8 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         getEmailToCheck = userDefault.string(forKey: "email") ?? ""
         user_id = userDefault.string(forKey: "id") ?? ""
         
+        
+//        self.tabBarController?.tabBar.backgroundColor = .white
         self.tabBarController?.tabBar.isHidden = false
         
         if getEmailToCheck != "" {
@@ -345,7 +347,7 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.view.backgroundColor = UIColor.darkGray
+//        self.view.backgroundColor = UIColor.darkGray
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
@@ -388,6 +390,7 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         } else {
             // show popUp
             self.animateIn()
+//            self.navigationController?.tabBarController?.tabBar.backgroundColor = .clear
             
             self.selectBookIndex = indexPath.row
             
