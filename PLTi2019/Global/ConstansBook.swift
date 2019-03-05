@@ -9,7 +9,7 @@
 import UIKit
 
 class ConstansBook {
-    static let apiBaseUrl = "http://192.168.0.97"
+    static let apiBaseUrl = "http://192.168.0.12"
     
     static var session: User?
     
