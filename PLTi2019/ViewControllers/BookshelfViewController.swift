@@ -16,6 +16,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var bookCV: UICollectionView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     // MARK: Property
     private let reuseIdentifier = "bookCell"
@@ -38,6 +39,9 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     // MARK: System
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.indicatorView.startAnimating()
+        
         setupCollectionView()
         setupNavBar()
         setupBook()
@@ -66,14 +70,16 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         getEmailToCheck = userDefault.string(forKey: "email") ?? ""
         user_id = userDefault.string(forKey: "id") ?? ""
         
+        
+//        self.tabBarController?.tabBar.backgroundColor = .white
         self.tabBarController?.tabBar.isHidden = false
         
         if getEmailToCheck != "" {
             // show itembuttom Login
-            itemButtonLogin.image = UIImage(named: "signIn")
+            itemButtonLogin.image = UIImage(named: "signOut")
         } else {
             // show itembuttom Logout
-            itemButtonLogin.image = UIImage(named: "signOut")
+            itemButtonLogin.image = UIImage(named: "signIn")
         }
     }
     
@@ -107,6 +113,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
     
     func setupBook() {
         ApiService.shared.apiListBooks(book_id: "", user_login: "", borrowDate: "", returnBook: "", success: { (books) in
+            
+            self.indicatorView.stopAnimating()
+            
+            self.indicatorView.isHidden = true
             guard books.count > 0 else {
                 return
             }
@@ -337,7 +347,7 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.view.backgroundColor = UIColor.darkGray
+//        self.view.backgroundColor = UIColor.darkGray
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM-dd-yyyy HH:mm"
@@ -380,6 +390,7 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         } else {
             // show popUp
             self.animateIn()
+//            self.navigationController?.tabBarController?.tabBar.backgroundColor = .clear
             
             self.selectBookIndex = indexPath.row
             
