@@ -12,7 +12,6 @@
 		5B04525322252541002AF8B0 /* apiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04525222252541002AF8B0 /* apiService.swift */; };
 		5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0452572225266F002AF8B0 /* ConstansBook.swift */; };
 		5B04525C222528F8002AF8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04525B222528F8002AF8B0 /* Default-568h@2x.png */; };
-		5B4B4D082201B30E006B03A3 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4B4D072201B30E006B03A3 /* Api.swift */; };
 		5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4EF484221282B80034B61A /* HomeViewController.swift */; };
 		5B60B95F22262F3F00DFB680 /* Collection3dViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */; };
 		5B60B9632226318C00DFB680 /* Image3dPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */; };
@@ -26,6 +25,9 @@
 		5B6F00DB221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6F00DA221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework */; };
 		5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AD018221ABA0B00374658 /* Printer3dTutorialViewController.swift */; };
 		5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */; };
+		5B896912222D203200F4D7AE /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B896911222D203200F4D7AE /* CounterView.swift */; };
+		5B896914222D214600F4D7AE /* ImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B896913222D214600F4D7AE /* ImageViewer.framework */; };
+		5B896916222D31C600F4D7AE /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B896915222D31C600F4D7AE /* ResetPassViewController.swift */; };
 		5BAF4CF822158A8500D6CA36 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */; };
 		5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */; };
 		5BC7B74C221C32AF009EF0D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC7B74B221C32AE009EF0D9 /* Main.storyboard */; };
@@ -42,7 +44,6 @@
 		5B0452572225266F002AF8B0 /* ConstansBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstansBook.swift; path = PLTi2019/Global/ConstansBook.swift; sourceTree = SOURCE_ROOT; };
 		5B04525B222528F8002AF8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5B04525F22252AC3002AF8B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B4B4D072201B30E006B03A3 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5B4EF484221282B80034B61A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection3dViewCell.swift; sourceTree = "<group>"; };
 		5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image3dPrinterViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +58,9 @@
 		5B7AD01E221AC97B00374658 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5B7AD01F221AC97B00374658 /* SwiftGif.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGif.framework; path = Carthage/Build/iOS/SwiftGif.framework; sourceTree = "<group>"; };
 		5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTutorialViewController.swift; sourceTree = "<group>"; };
+		5B896911222D203200F4D7AE /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		5B896913222D214600F4D7AE /* ImageViewer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageViewer.framework; path = Carthage/Build/iOS/ImageViewer.framework; sourceTree = "<group>"; };
+		5B896915222D31C600F4D7AE /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
 		5BAF4CF722158A8500D6CA36 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
 		5BAF4CFB22158C2000D6CA36 /* BookshelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BC7B74B221C32AE009EF0D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B6F00DB221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework in Frameworks */,
+				5B896914222D214600F4D7AE /* ImageViewer.framework in Frameworks */,
 				5B6F00D7221C1C5F00A840F7 /* Alamofire.framework in Frameworks */,
 				5B6F00D8221C1C5F00A840F7 /* SwiftGif.framework in Frameworks */,
 				5B6F00D9221C1C5F00A840F7 /* SwiftyJSON.framework in Frameworks */,
@@ -127,7 +132,6 @@
 				5BDFA82A21FEB5CC00258E88 /* Utils */,
 				5B6D866321FAF237003E525B /* ViewControllers */,
 				5B6D865121FAF164003E525B /* AppDelegate.swift */,
-				5B4B4D072201B30E006B03A3 /* Api.swift */,
 				5BC7B74B221C32AE009EF0D9 /* Main.storyboard */,
 				5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */,
 				5BC7B751221C33AF009EF0D9 /* Assets.xcassets */,
@@ -150,6 +154,7 @@
 				5B7AD024221AD1C500374658 /* DetailTutorialViewController.swift */,
 				5B60B95E22262F3F00DFB680 /* Collection3dViewCell.swift */,
 				5B60B9622226318C00DFB680 /* Image3dPrinterViewController.swift */,
+				5B896915222D31C600F4D7AE /* ResetPassViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 		5B7AD01C221AC97B00374658 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B896913222D214600F4D7AE /* ImageViewer.framework */,
 				5B6F00DA221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework */,
 				5B7AD01E221AC97B00374658 /* Alamofire.framework */,
 				5B7AD01F221AC97B00374658 /* SwiftGif.framework */,
@@ -171,6 +177,7 @@
 				5BDFA82B21FEB60F00258E88 /* Constants.swift */,
 				5BDFA82D21FEB64500258E88 /* Extensions.swift */,
 				5BD398C9221427770066FF61 /* object.swift */,
+				5B896911222D203200F4D7AE /* CounterView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -256,6 +263,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftGif.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ImageViewer.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -279,6 +287,7 @@
 				5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */,
 				5B7AD019221ABA0B00374658 /* Printer3dTutorialViewController.swift in Sources */,
 				5B60B9632226318C00DFB680 /* Image3dPrinterViewController.swift in Sources */,
+				5B896916222D31C600F4D7AE /* ResetPassViewController.swift in Sources */,
 				5B6D866521FAF258003E525B /* LoginViewController.swift in Sources */,
 				5B6D865221FAF164003E525B /* AppDelegate.swift in Sources */,
 				5B04525322252541002AF8B0 /* apiService.swift in Sources */,
@@ -289,7 +298,7 @@
 				5BAF4CFC22158C2000D6CA36 /* BookshelfCollectionViewCell.swift in Sources */,
 				5B7AD025221AD1C500374658 /* DetailTutorialViewController.swift in Sources */,
 				06BFAE44221E5368004DE54D /* (null) in Sources */,
-				5B4B4D082201B30E006B03A3 /* Api.swift in Sources */,
+				5B896912222D203200F4D7AE /* CounterView.swift in Sources */,
 				5BDFA82C21FEB60F00258E88 /* Constants.swift in Sources */,
 				5BF1B5552211258A005B3123 /* HomeCollectionViewCell.swift in Sources */,
 			);

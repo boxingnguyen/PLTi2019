@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var selectBook = Book(id: "", name: "", author: "", image: "", catergory: .all, isBorrow: false, user_borrow_id: "")
     var delegate: selectBookDelegate?
+    var resetPass = false
     
     @IBAction func btnLoginTouch(_ sender: Any) {
         
@@ -42,13 +43,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 user.set(userJson.email, forKey: "email")
                 user.set(userJson.id, forKey: "id")
                 user.set(userJson.username, forKey: "user")
-                // pop bookshelf
 
                 // add book to chooseBook
                 self.delegate?.chooseBookReload(self.selectBook)
                 
-                self.navigationController?.popViewController(animated: true)
-                
+                if !self.resetPass {
+                    self.navigationController?.popViewController(animated: true)
+                    self.resetPass = false
+                } else {
+                    // back to login
+                    let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let loginVC = stboard.instantiateViewController(withIdentifier: "bookshelfVC")
+                    self.navigationController?.pushViewController(loginVC, animated: false)
+                }
             }) { (err) in
                 print("Loi \(err.localizedDescription)")
                 self.errorLabel.isHidden = false
@@ -68,15 +75,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.email.delegate = self
         self.password.delegate = self
         self.forgotEmail.delegate = self
-        
-        print("Book \(selectBook.name) and \(selectBook.author)")
-        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        let user = UserDefaults.standard.object(forKey: "user") ?? User()
+    override func viewWillAppear(_ animated: Bool) {
         self.errorLabel.isHidden = true
+        
+        if resetPass {
+            self.forgotView.removeFromSuperview()
+        }
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.dismissKeyboard()
         return true
@@ -153,10 +161,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         forgotErrorMesg.isHidden = true
         let lostEmail = self.forgotEmail.text!
-        print(lostEmail)
 
         // send api to send email
+        ApiService.shared.sendEmailToResetPass(email: lostEmail, success: { (result) in
+            if self.isValidEmail(testStr: result) {
+                let stboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let resetVC = stboard.instantiateViewController(withIdentifier: "resetVC") as! ResetPassViewController
+                resetVC.lostAccountEmail = result
+                self.navigationController?.pushViewController(resetVC, animated: true)
+                self.forgotErrorMesg.isHidden = true
+            }
+            return
+        }) { (Error) in
+            if Error._code == 104 {
+                self.forgotErrorMesg.text = "This email hasn't registerd yet!"
+                self.forgotErrorMesg.isHidden = false
+            }
+        }
     }
-    
 
 }
