@@ -22,8 +22,6 @@ class ApiService: NSObject {
             "Accept": "application/json"
         ]
         
-//        print(endPoint)
-        
         Alamofire.request(endPoint, method: HTTPMethod.post, parameters: options, encoding: URLEncoding.default, headers: header).responseJSON { (respones) in
             
             guard let object = respones.result.value else {
@@ -198,4 +196,32 @@ class ApiService: NSObject {
         
     }
     
+    func sendEmailToResetPass(email: String, success: @escaping(_ result: String) -> Void, error: @escaping(Error) -> Void) {
+        let options = [
+            "email": email
+        ]
+        
+        apiPost(path: "/api/REST/users/sen_mail.json", options: options, success: { (json) in
+            let email = json["success"]["to"].string ?? ""
+            success(email)
+        }) { (err) in
+            error(err)
+        }
+    }
+    
+    func resetPass(email: String, newPass: String, pin: String, success: @escaping(_ result: String) -> Void, error: @escaping(Error) -> Void) {
+        let options = [
+            "email": email,
+            "new_pass": newPass,
+            "pin": pin
+        ]
+        
+        apiPost(path: "/api/REST/users/reset_pass.json", options: options, success: { (json) in
+             let lostAccEmail = json["User"]["email"].string ?? ""
+            success(lostAccEmail)
+        }) { (err) in
+            error(err)
+        }
+    }
 }
+
