@@ -62,10 +62,6 @@ class Image3dPrinterViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func getCollection() {
-        // call api to get collection
-    }
-    
     @IBAction func backHome(_ sender: Any) {
         let stboard = UIStoryboard.init(name: "Main", bundle: nil)
         let loginVC = stboard.instantiateViewController(withIdentifier: "homeVC")
@@ -100,20 +96,17 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     func showImage(index: Int) {
         let displacedViewIndex: Int = index
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-//        let headerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
         let footerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
-        
         let galleryViewController = GalleryViewController(startIndex: displacedViewIndex, itemsDataSource: self, itemsDelegate: self, displacedViewsDataSource: self, configuration: galleryConfiguration())
-//        galleryViewController.headerView = headerView
+
         galleryViewController.footerView = footerView
         
         galleryViewController.launchedCompletion = { print("LAUNCHED") }
         galleryViewController.closedCompletion = { print("CLOSED") }
         galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
-        
         galleryViewController.landedPageAtIndexCompletion = { index in
             
-            print("LANDED AT INDEX: \(index)")
+        print("LANDED AT INDEX: \(index)")
             
 //            headerView.count = self.items.count
 //            headerView.currentIndex = index
@@ -125,53 +118,19 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     }
     
     func galleryConfiguration() -> GalleryConfiguration {
-        
         return [
             
-            GalleryConfigurationItem.closeButtonMode(.builtIn),
+            // Remove two buttons 'Delete' & 'Show all'
+            GalleryConfigurationItem.deleteButtonMode(ButtonMode.none),
+            GalleryConfigurationItem.thumbnailsButtonMode(ButtonMode.builtIn),
             
-            GalleryConfigurationItem.pagingMode(.standard),
-            GalleryConfigurationItem.presentationStyle(.displacement),
-            GalleryConfigurationItem.hideDecorationViewsOnLaunch(false),
+            GalleryConfigurationItem.overlayBlurOpacity(0),
             
-            GalleryConfigurationItem.swipeToDismissMode(.vertical),
-            GalleryConfigurationItem.toggleDecorationViewsBySingleTap(false),
-            GalleryConfigurationItem.activityViewByLongPress(false),
-            
-            GalleryConfigurationItem.overlayColor(UIColor(white: 0.035, alpha: 1)),
-            GalleryConfigurationItem.overlayColorOpacity(1),
-            GalleryConfigurationItem.overlayBlurOpacity(1),
-            GalleryConfigurationItem.overlayBlurStyle(UIBlurEffect.Style.light),
-            
-            GalleryConfigurationItem.videoControlsColor(.white),
-            
-            GalleryConfigurationItem.maximumZoomScale(8),
-            GalleryConfigurationItem.swipeToDismissThresholdVelocity(500),
-            
-            GalleryConfigurationItem.doubleTapToZoomDuration(0.15),
-            
-            GalleryConfigurationItem.blurPresentDuration(0.5),
-            GalleryConfigurationItem.blurPresentDelay(0),
-            GalleryConfigurationItem.colorPresentDuration(0.25),
-            GalleryConfigurationItem.colorPresentDelay(0),
-            
-            GalleryConfigurationItem.blurDismissDuration(0.1),
-            GalleryConfigurationItem.blurDismissDelay(0.4),
-            GalleryConfigurationItem.colorDismissDuration(0.45),
-            GalleryConfigurationItem.colorDismissDelay(0),
-            
-            GalleryConfigurationItem.itemFadeDuration(0.3),
-            GalleryConfigurationItem.decorationViewsFadeDuration(0.15),
-            GalleryConfigurationItem.rotationDuration(0.15),
-            
-            GalleryConfigurationItem.displacementDuration(0.55),
-            GalleryConfigurationItem.reverseDisplacementDuration(0.25),
-            GalleryConfigurationItem.displacementTransitionStyle(.springBounce(0.7)),
-            GalleryConfigurationItem.displacementTimingCurve(.linear),
-            
-            GalleryConfigurationItem.statusBarHidden(true),
-            GalleryConfigurationItem.displacementKeepOriginalInPlace(false),
-            GalleryConfigurationItem.displacementInsetMargin(50)
+            // Disable bounce
+            GalleryConfigurationItem.displacementTransitionStyle(GalleryDisplacementStyle.normal),
+
+            GalleryConfigurationItem.reverseDisplacementDuration(0.2),
+            GalleryConfigurationItem.colorDismissDuration(0.2),
         ]
     }
 }

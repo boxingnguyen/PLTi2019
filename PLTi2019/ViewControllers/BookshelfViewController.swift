@@ -223,6 +223,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         let calendar = Calendar.current
         var component = DateComponents()
         let components = calendar.dateComponents([.day,.month,.year, .hour, .minute], from: self.datePicker.date)
+        
         if let day = components.day, let month = components.month, let year = components.year, let hour = components.hour, let minute = components.minute {
             component.day = day
             component.month = month
@@ -337,6 +338,7 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.bookName.text = currentBooks[indexPath.row].name
         cell.author.text = currentBooks[indexPath.row].author
         let url = URL(string: currentBooks[indexPath.row].image)
+        
         if url != nil {
             let data = try? Data(contentsOf: url!)
             cell.bookImg.image = UIImage(data: data!)
@@ -384,7 +386,23 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
             // hide popUp
             animateOut()
             // show alert
-            let alertVC = UIAlertController(title: "", message: "This book will be returned at \(self.currentBooks[indexPath.row].date_return)", preferredStyle: .alert)
+            
+            print(self.currentBooks[indexPath.row].date_return)
+            
+            // format date to display for example 6 Mar 2019
+            let inFormatter = DateFormatter()
+            inFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+            inFormatter.dateFormat = "Y-MM-dd hh:mm:ss"
+            
+            let outFormatter = DateFormatter()
+            outFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+            outFormatter.dateFormat = "MMM d, Y"
+            
+            let inStr = self.currentBooks[indexPath.row].date_return
+            let date = inFormatter.date(from: inStr)!
+            let outStr = outFormatter.string(from: date)
+            
+            let alertVC = UIAlertController(title: "", message: "This book will be returned at \(outStr)", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         } else {
