@@ -28,7 +28,7 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.mainImgView.contentMode = UIView.ContentMode.scaleAspectFit
         // go around techlab
         visitMode = true
         setupView()
@@ -108,39 +108,44 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
             let beaconMajor = Int(truncating: closestBeacon.major)
             self.mainTextView.textAlignment = NSTextAlignment.left
             self.finishTourBtn.isHidden = true
-            
+        
             switch beaconMajor {
+            // gate
             case 1:
                 checkViewByBeacon = "gate"
-                mainTextView.text = "Welcome to Tribal Tribal Media House Technology Lab. Tribal Media House is a marketing venture whose mission is to 'Create the future of marketing'. This DNA has been inherited. TMH Tech. Lab has been providing not only domestic-class, but also world-class Technology x Marketing solution. \n   Do you realize alphabet and special characters in ours logo? Yes, Marketing x Technnology!"
-
-                self.arrImg = ["logoTMH"]
+                mainTextView.text = "Welcome to Tribal Tribal Media House Technology Lab. Tribal Media House is a marketing venture whose mission is to 'Create the future of marketing'. This DNA has been inherited. TMH Tech. Lab has been providing not only domestic-class, but also world-class Technology x Marketing solution. \n   Do you realize alphabet and special characters in ours logo? Yes, Marketing x Technnology! \n   Your rightside is where put shoes and display ours beautiful moments."
+                
+                self.arrImg = ["41", "38", "39", "40"]
                 startTimerImg()
                 
                 buttonPrinter.isHidden = true
                 buttonBook.isHidden = true
+            // mission
             case 2:
                 checkViewByBeacon = "mission"
-                mainTextView.text = "The world is awesome, so many things to discover. Ignite your passion and feel it. \n   There are some behaviour rules you should keep in mind. \n   Finally, be crazy! 😜. Crazy people are more likely to be successful. Why? To think out of box, too foolish to be scared, to have high energy and dare to break the rules."
+                mainTextView.text = "The world is awesome, so many things to discover. Ignite your passion and feel it.\n Be crazy! 😜. Crazy people are more likely to be successful. Why? To think out of box, too foolish to be scared, to have high energy and dare to break the rules. \n   Finally, there are some behaviour rules, keep in mind nhé!"
+
+                self.arrImg = ["03", "02", "01", "04"]
                 
-                self.arrImg = ["mission", "rule", "img1", "img2"]
                 startTimerImg()
                 
                 buttonPrinter.isHidden = true
                 buttonBook.isHidden = true
+            // 3d printer
             case 3:
                 mainTextView.text = "Here is 3d printer. Thanks to Jo president, we can play with it to relax and encourage creativity also. If you need tutorial, touch button below."
                 
-                self.arrImg = ["component3dPrinter", "img6", "img7", "img8"]
+                self.arrImg = ["42", "43", "37", "23"]
                 startTimerImg()
                 
                 buttonPrinter.isHidden = false
                 buttonBook.isHidden = true
+            // open space
             default:
                 checkViewByBeacon = "book"
                 mainTextView.text = "This is open space where held morning meeting, fruit time or TechLab news and some special events like Christmas or women day. We also have lunch here or relax with shuttlecock. \n   Beside you there is ours bookshelf with various categories of books. Touch to button below to visit ours library and borrow book."
                 
-                self.arrImg = ["bookshelf", "img9", "img10", "img11"]
+                self.arrImg = ["26", "33", "34", "44"]
                 startTimerImg()
                 
                 buttonPrinter.isHidden = true
@@ -167,7 +172,18 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func imageChange() {
-        self.mainImgView.image = UIImage(named: arrImg[i])
+        let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(arrImg[self.i]).JPG")
+        
+        if url != nil {
+            let data = try? Data(contentsOf: url!)
+            self.mainImgView.image = UIImage(data: data!)
+            
+            if i == 3 {
+                
+            }
+        }
+        
+//        self.mainImgView.image = UIImage(named: arrImg[i])
         
         if i < arrImg.count - 1 {
             print(i)

@@ -408,11 +408,10 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         } else {
             // show popUp
             self.animateIn()
-//            self.navigationController?.tabBarController?.tabBar.backgroundColor = .clear
             
             self.selectBookIndex = indexPath.row
-            
             self.indexPath = indexPath
+            
             if getEmailToCheck != "" {
                 self.selectedBook = currentBooks[indexPath.row]
                 chooseBooks.append(currentBooks[indexPath.row])
