@@ -1162,7 +1162,7 @@
             </objects>
             <point key="canvasLocation" x="4764" y="1106"/>
         </scene>
-        <!--TechLab's Gallery 3d-->
+        <!--TechLab's 3D Gallery-->
         <scene sceneID="lW0-Ak-hpv">
             <objects>
                 <viewController storyboardIdentifier="gallery3d" id="HvH-08-0sh" customClass="Image3dPrinterViewController" customModule="PLTi2019" customModuleProvider="target" sceneMemberID="viewController">
@@ -1228,7 +1228,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="odg-aA-5aG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="TechLab's Gallery 3d" id="TbU-a6-Iyt"/>
+                    <navigationItem key="navigationItem" title="TechLab's 3D Gallery" id="TbU-a6-Iyt"/>
                     <connections>
                         <outlet property="collectionCV" destination="2xW-LA-bUx" id="eTh-yV-Ce3"/>
                         <outlet property="largeImg" destination="vfp-XB-JDk" id="5ob-cE-le5"/>

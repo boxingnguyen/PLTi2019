@@ -13,7 +13,6 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
@@ -43,14 +42,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        guard region is CLBeaconRegion else { return }
-
-    }
-
-    func startMonitoring(for region: CLRegion) {
-        
-    }
-}
 
