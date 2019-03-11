@@ -58,6 +58,14 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         datePicker.setValue(UIColor.red, forKey:"textColor")
         datePicker.tintColor = .white
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @objc func turnBack(_ sender: UIBarButtonItem) {
@@ -110,6 +118,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
     }
     
     func setupBook() {
