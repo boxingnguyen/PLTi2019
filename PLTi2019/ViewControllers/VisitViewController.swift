@@ -47,6 +47,7 @@ class VisitViewController: UIViewController, CLLocationManagerDelegate {
         
         buttonBook.isHidden = true
         buttonPrinter.isHidden = true
+
         mainTextView.text = "Stand at the entrance to start..."
         mainTextView.textAlignment = NSTextAlignment.center
         finishTourBtn.isHidden = true
