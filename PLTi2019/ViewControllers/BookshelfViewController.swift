@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BookshelfViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var itemButtonLogin: UIBarButtonItem!
@@ -338,13 +339,14 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.bookName.text = currentBooks[indexPath.row].name
         cell.author.text = currentBooks[indexPath.row].author
         let url = URL(string: currentBooks[indexPath.row].image)
+        cell.bookImg.kf.setImage(with: url)
         
-        if url != nil {
-            let data = try? Data(contentsOf: url!)
-            cell.bookImg.image = UIImage(data: data!)
-        } else {
-            cell.bookImg.image = UIImage(named: "bookDefault")
-        }
+//        if url != nil {
+//            let data = try? Data(contentsOf: url!)
+//            cell.bookImg.image = UIImage(data: data!)
+//        } else {
+//            cell.bookImg.image = UIImage(named: "bookDefault")
+//        }
         return cell
     }
     

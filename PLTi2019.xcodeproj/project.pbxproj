@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		06BFAE44221E5368004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		06BFAE46221E53CB004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		1DAB3AE12232450F006B583E /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAB3AE02232450F006B583E /* Kingfisher.framework */; };
+		1DAB3AE322325523006B583E /* YouTubePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAB3AE222325523006B583E /* YouTubePlayer.framework */; };
 		5B04525322252541002AF8B0 /* apiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04525222252541002AF8B0 /* apiService.swift */; };
 		5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0452572225266F002AF8B0 /* ConstansBook.swift */; };
 		5B04525C222528F8002AF8B0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B04525B222528F8002AF8B0 /* Default-568h@2x.png */; };
@@ -40,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DAB3ADE22324502006B583E /* Kingfisher.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Kingfisher.framework.dSYM; path = Carthage/Build/iOS/Kingfisher.framework.dSYM; sourceTree = "<group>"; };
+		1DAB3AE02232450F006B583E /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		1DAB3AE222325523006B583E /* YouTubePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YouTubePlayer.framework; path = Carthage/Build/iOS/YouTubePlayer.framework; sourceTree = "<group>"; };
 		5B04525222252541002AF8B0 /* apiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = apiService.swift; path = PLTi2019/Service/apiService.swift; sourceTree = SOURCE_ROOT; };
 		5B0452572225266F002AF8B0 /* ConstansBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstansBook.swift; path = PLTi2019/Global/ConstansBook.swift; sourceTree = SOURCE_ROOT; };
 		5B04525B222528F8002AF8B0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -82,6 +87,8 @@
 				5B6F00D7221C1C5F00A840F7 /* Alamofire.framework in Frameworks */,
 				5B6F00D8221C1C5F00A840F7 /* SwiftGif.framework in Frameworks */,
 				5B6F00D9221C1C5F00A840F7 /* SwiftyJSON.framework in Frameworks */,
+				1DAB3AE12232450F006B583E /* Kingfisher.framework in Frameworks */,
+				1DAB3AE322325523006B583E /* YouTubePlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +138,8 @@
 				5B04525122252504002AF8B0 /* Service */,
 				5BDFA82A21FEB5CC00258E88 /* Utils */,
 				5B6D866321FAF237003E525B /* ViewControllers */,
-				5B6D865121FAF164003E525B /* AppDelegate.swift */,
 				5BC7B74B221C32AE009EF0D9 /* Main.storyboard */,
+				5B6D865121FAF164003E525B /* AppDelegate.swift */,
 				5B6D865A21FAF168003E525B /* LaunchScreen.storyboard */,
 				5BC7B751221C33AF009EF0D9 /* Assets.xcassets */,
 				5B04525F22252AC3002AF8B0 /* Info.plist */,
@@ -162,6 +169,9 @@
 		5B7AD01C221AC97B00374658 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DAB3AE222325523006B583E /* YouTubePlayer.framework */,
+				1DAB3AE02232450F006B583E /* Kingfisher.framework */,
+				1DAB3ADE22324502006B583E /* Kingfisher.framework.dSYM */,
 				5B896913222D214600F4D7AE /* ImageViewer.framework */,
 				5B6F00DA221C1C6000A840F7 /* YouTubeiOSPlayerHelper.framework */,
 				5B7AD01E221AC97B00374658 /* Alamofire.framework */,
@@ -264,6 +274,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ImageViewer.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/YouTubePlayer.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -438,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XSSZM775S9;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -452,6 +465,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Quyen-Anh.PLTi2019";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -461,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XSSZM775S9;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -475,6 +490,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Quyen-Anh.PLTi2019";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

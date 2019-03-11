@@ -8,6 +8,8 @@
 
 import UIKit
 import ImageViewer
+import Kingfisher
+
 
 extension UIImageView: DisplaceableView {}
 
@@ -30,8 +32,6 @@ class Image3dPrinterViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         var galleryItem: GalleryItem!
-        
-//        largeImg.downloaded(from: "http://192.168.0.12/api/app/webroot/img/10.JPG")
         
         for i in 5...24 {
             var imgName = String(i)
@@ -107,11 +107,7 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
         }
         
         let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
-
-        if url != nil {
-            let data = try? Data(contentsOf: url!)
-            cell.image3d.image = UIImage(data: data!)
-        }
+        cell.image3d.kf.setImage(with: url)
         
         return cell
     }
