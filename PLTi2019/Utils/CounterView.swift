@@ -12,6 +12,7 @@ class CounterView: UIView {
 
     var count: Int
     let countLabel = UILabel()
+    
     var currentIndex: Int {
         didSet {
             updateLabel()
@@ -40,12 +41,12 @@ class CounterView: UIView {
     }
 
     func updateLabel() {
-
 //        let stringTemplate = "%d of %d"
-        let stringTemplate = "Nội dung bức anh có the dai tới 2 dòng trong iOS, print 3D của tmh techlab. "
+//        let stringTemplate = "Author: \(authors[currentIndex])"
+        let stringTemplate = "TechLab's 3d objects collection."
         let countString = String(format: stringTemplate, arguments: [currentIndex + 1, count])
 
-        countLabel.attributedText = NSAttributedString(string: countString, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.white])
+        countLabel.attributedText = NSAttributedString(string: countString, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 11), NSAttributedString.Key.foregroundColor: UIColor.white])
     }
 
     override func layoutSubviews() {

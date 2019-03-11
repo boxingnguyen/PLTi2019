@@ -29,15 +29,29 @@ class Image3dPrinterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        //        gestureSwipe()
+        var galleryItem: GalleryItem!
         
-        for (_, imgString) in imageNames.enumerated() {
+//        largeImg.downloaded(from: "http://192.168.0.12/api/app/webroot/img/10.JPG")
+        
+        for i in 5...24 {
+            var imgName = String(i)
             
-            var galleryItem: GalleryItem!
-            let image = UIImage(named: imgString) // ?? UIImage(named: "0")!
-            galleryItem = GalleryItem.image { $0(image) }
-            items.append(DataItem(imageView: largeImg, galleryItem: galleryItem))
+            if i < 10 {
+                imgName = "0" + imgName
+            }
+            
+            let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
+            
+            if url != nil {
+                let data = try? Data(contentsOf: url!)
+                let image = UIImage(data: data!)
+                
+                galleryItem = GalleryItem.image { $0(image) }
+                items.append(DataItem(imageView: largeImg, galleryItem: galleryItem))
+            }
         }
+            
+       
     }
     
     func setupView() {
@@ -62,10 +76,6 @@ class Image3dPrinterViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func getCollection() {
-        // call api to get collection
-    }
-    
     @IBAction func backHome(_ sender: Any) {
         let stboard = UIStoryboard.init(name: "Main", bundle: nil)
         let loginVC = stboard.instantiateViewController(withIdentifier: "homeVC")
@@ -82,12 +92,26 @@ class Image3dPrinterViewController: UIViewController {
 //MARK: Extention collection view
 extension Image3dPrinterViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imageNames.count
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! Collection3dViewCell
-        cell.image3d.image = UIImage(named: self.imageNames[indexPath.row])
+
+//        cell.image3d.image = UIImage(named: self.imageNames[indexPath.row])
+        
+        var imgName = String(indexPath.row + 5)
+        
+        if indexPath.row < 5 {
+            imgName = "0" + imgName
+        }
+        
+        let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
+
+        if url != nil {
+            let data = try? Data(contentsOf: url!)
+            cell.image3d.image = UIImage(data: data!)
+        }
         
         return cell
     }
@@ -100,20 +124,17 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     func showImage(index: Int) {
         let displacedViewIndex: Int = index
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-//        let headerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
         let footerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
-        
         let galleryViewController = GalleryViewController(startIndex: displacedViewIndex, itemsDataSource: self, itemsDelegate: self, displacedViewsDataSource: self, configuration: galleryConfiguration())
-//        galleryViewController.headerView = headerView
+
         galleryViewController.footerView = footerView
         
         galleryViewController.launchedCompletion = { print("LAUNCHED") }
         galleryViewController.closedCompletion = { print("CLOSED") }
         galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
-        
         galleryViewController.landedPageAtIndexCompletion = { index in
             
-            print("LANDED AT INDEX: \(index)")
+        print("LANDED AT INDEX: \(index)")
             
 //            headerView.count = self.items.count
 //            headerView.currentIndex = index
@@ -125,17 +146,18 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     }
     
     func galleryConfiguration() -> GalleryConfiguration {
-        
         return [
             
             // Remove two buttons 'Delete' & 'Show all'
             GalleryConfigurationItem.deleteButtonMode(ButtonMode.none),
-            GalleryConfigurationItem.thumbnailsButtonMode(ButtonMode.none),
+            GalleryConfigurationItem.thumbnailsButtonMode(ButtonMode.builtIn),
             
             // Disable bluring background while ImageViewer dismiss
             GalleryConfigurationItem.overlayBlurOpacity(0),
             
-            // Image & its background fade out in the same time (0.2s)
+            // Disable bounce
+            GalleryConfigurationItem.displacementTransitionStyle(GalleryDisplacementStyle.normal),
+
             GalleryConfigurationItem.reverseDisplacementDuration(0.2),
             GalleryConfigurationItem.colorDismissDuration(0.2),
             
