@@ -33,8 +33,8 @@ class DetailTutorialViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
-        
-        self.tutVideo.load(withVideoId: "JxSeMGbkWYE")
+
+        self.tutVideo.load(withVideoId: "9lHaLIQhrdY")
     }
     
 
