@@ -8,6 +8,8 @@
 
 import UIKit
 import ImageViewer
+import Kingfisher
+
 
 extension UIImageView: DisplaceableView {}
 
@@ -17,7 +19,6 @@ struct DataItem {
 }
 
 class Image3dPrinterViewController: UIViewController {
-    let imageNames = ["img1","img2","img3","img4","img5", "img6"]
     var currentImage = 0
     
     @IBOutlet weak var collectionCV: UICollectionView!
@@ -29,14 +30,33 @@ class Image3dPrinterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        //        gestureSwipe()
+        var galleryItem: GalleryItem!
         
-        for (_, imgString) in imageNames.enumerated() {
+        for i in 5...24 {
+            var imgName = String(i)
             
-            var galleryItem: GalleryItem!
-            let image = UIImage(named: imgString) // ?? UIImage(named: "0")!
-            galleryItem = GalleryItem.image { $0(image) }
-            items.append(DataItem(imageView: largeImg, galleryItem: galleryItem))
+            if i < 10 {
+                imgName = "0" + imgName
+            }
+            
+            let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
+            
+            if url != nil {
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 500, height: 370))
+                
+                KingfisherManager.shared.retrieveImage(with: url!, options: [.alsoPrefetchToMemory, .processor(processor)], progressBlock: nil) { result in
+                    switch result {
+                    case .success(let value):
+                        galleryItem = GalleryItem.image { $0(value.image) }
+                        self.items.append(DataItem(imageView: self.largeImg, galleryItem: galleryItem))
+                        
+                        print("Image: \(value.image). Got from: \(value.cacheType)")
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+             
+            }
         }
     }
     
@@ -62,10 +82,6 @@ class Image3dPrinterViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func getCollection() {
-        // call api to get collection
-    }
-    
     @IBAction func backHome(_ sender: Any) {
         let stboard = UIStoryboard.init(name: "Main", bundle: nil)
         let loginVC = stboard.instantiateViewController(withIdentifier: "homeVC")
@@ -77,18 +93,62 @@ class Image3dPrinterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // func resizeImage
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }
 
 //MARK: Extention collection view
 extension Image3dPrinterViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imageNames.count
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! Collection3dViewCell
-        cell.image3d.image = UIImage(named: self.imageNames[indexPath.row])
         
+        var imgName = String(indexPath.row + 5)
+        
+        if indexPath.row < 5 {
+            imgName = "0" + imgName
+        }
+        
+
+        let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).png")
+        let size = CGSize(width: 93.75, height: 93.75)
+        
+        cell.image3d.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .processor(DownsamplingImageProcessor(size: size)),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
+            ])
+        print(cell.frame.size)
         return cell
     }
     
@@ -100,20 +160,17 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     func showImage(index: Int) {
         let displacedViewIndex: Int = index
         let frame = CGRect(x: 0, y: 0, width: 200, height: 24)
-//        let headerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
         let footerView = CounterView(frame: frame, currentIndex: displacedViewIndex, count: items.count)
-        
         let galleryViewController = GalleryViewController(startIndex: displacedViewIndex, itemsDataSource: self, itemsDelegate: self, displacedViewsDataSource: self, configuration: galleryConfiguration())
-//        galleryViewController.headerView = headerView
+
         galleryViewController.footerView = footerView
         
         galleryViewController.launchedCompletion = { print("LAUNCHED") }
         galleryViewController.closedCompletion = { print("CLOSED") }
         galleryViewController.swipedToDismissCompletion = { print("SWIPE-DISMISSED") }
-        
         galleryViewController.landedPageAtIndexCompletion = { index in
             
-            print("LANDED AT INDEX: \(index)")
+        print("LANDED AT INDEX: \(index)")
             
 //            headerView.count = self.items.count
 //            headerView.currentIndex = index
@@ -125,53 +182,19 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     }
     
     func galleryConfiguration() -> GalleryConfiguration {
-        
         return [
             
-            GalleryConfigurationItem.closeButtonMode(.builtIn),
+            // Remove two buttons 'Delete' & 'Show all'
+            GalleryConfigurationItem.deleteButtonMode(ButtonMode.none),
+            GalleryConfigurationItem.thumbnailsButtonMode(ButtonMode.builtIn),
             
-            GalleryConfigurationItem.pagingMode(.standard),
-            GalleryConfigurationItem.presentationStyle(.displacement),
-            GalleryConfigurationItem.hideDecorationViewsOnLaunch(false),
+            GalleryConfigurationItem.overlayBlurOpacity(0),
             
-            GalleryConfigurationItem.swipeToDismissMode(.vertical),
-            GalleryConfigurationItem.toggleDecorationViewsBySingleTap(false),
-            GalleryConfigurationItem.activityViewByLongPress(false),
-            
-            GalleryConfigurationItem.overlayColor(UIColor(white: 0.035, alpha: 1)),
-            GalleryConfigurationItem.overlayColorOpacity(1),
-            GalleryConfigurationItem.overlayBlurOpacity(1),
-            GalleryConfigurationItem.overlayBlurStyle(UIBlurEffect.Style.light),
-            
-            GalleryConfigurationItem.videoControlsColor(.white),
-            
-            GalleryConfigurationItem.maximumZoomScale(8),
-            GalleryConfigurationItem.swipeToDismissThresholdVelocity(500),
-            
-            GalleryConfigurationItem.doubleTapToZoomDuration(0.15),
-            
-            GalleryConfigurationItem.blurPresentDuration(0.5),
-            GalleryConfigurationItem.blurPresentDelay(0),
-            GalleryConfigurationItem.colorPresentDuration(0.25),
-            GalleryConfigurationItem.colorPresentDelay(0),
-            
-            GalleryConfigurationItem.blurDismissDuration(0.1),
-            GalleryConfigurationItem.blurDismissDelay(0.4),
-            GalleryConfigurationItem.colorDismissDuration(0.45),
-            GalleryConfigurationItem.colorDismissDelay(0),
-            
-            GalleryConfigurationItem.itemFadeDuration(0.3),
-            GalleryConfigurationItem.decorationViewsFadeDuration(0.15),
-            GalleryConfigurationItem.rotationDuration(0.15),
-            
-            GalleryConfigurationItem.displacementDuration(0.55),
-            GalleryConfigurationItem.reverseDisplacementDuration(0.25),
-            GalleryConfigurationItem.displacementTransitionStyle(.springBounce(0.7)),
-            GalleryConfigurationItem.displacementTimingCurve(.linear),
-            
-            GalleryConfigurationItem.statusBarHidden(true),
-            GalleryConfigurationItem.displacementKeepOriginalInPlace(false),
-            GalleryConfigurationItem.displacementInsetMargin(50)
+            // Disable bounce
+            GalleryConfigurationItem.displacementTransitionStyle(GalleryDisplacementStyle.normal),
+
+            GalleryConfigurationItem.reverseDisplacementDuration(0.2),
+            GalleryConfigurationItem.colorDismissDuration(0.2),
         ]
     }
 }
@@ -216,3 +239,4 @@ class FLSomeAnimatedImage: UIImageView {
 // Extend ImageBaseController so we get all the functionality for free
 class AnimatedViewController: ItemBaseController<FLSomeAnimatedImage> {
 }
+

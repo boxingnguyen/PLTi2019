@@ -33,14 +33,9 @@ class DetailTutorialViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
-        
-        self.tutVideo.load(withVideoId: "JxSeMGbkWYE")
-    }
-    
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = false
-//    }
+        self.tutVideo.load(withVideoId: "9lHaLIQhrdY")
+    }
     
     @objc func turnBack(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)

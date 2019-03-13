@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BookshelfViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var itemButtonLogin: UIBarButtonItem!
@@ -57,6 +58,12 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         datePicker.setValue(UIColor.red, forKey:"textColor")
         datePicker.tintColor = .white
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @objc func turnBack(_ sender: UIBarButtonItem) {
@@ -109,6 +116,10 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(turnBack(_:)))
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
     }
     
     func setupBook() {
@@ -223,6 +234,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         let calendar = Calendar.current
         var component = DateComponents()
         let components = calendar.dateComponents([.day,.month,.year, .hour, .minute], from: self.datePicker.date)
+        
         if let day = components.day, let month = components.month, let year = components.year, let hour = components.hour, let minute = components.minute {
             component.day = day
             component.month = month
@@ -337,12 +349,14 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.bookName.text = currentBooks[indexPath.row].name
         cell.author.text = currentBooks[indexPath.row].author
         let url = URL(string: currentBooks[indexPath.row].image)
-        if url != nil {
-            let data = try? Data(contentsOf: url!)
-            cell.bookImg.image = UIImage(data: data!)
-        } else {
-            cell.bookImg.image = UIImage(named: "bookDefault")
-        }
+        cell.bookImg.kf.setImage(with: url)
+        
+//        if url != nil {
+//            let data = try? Data(contentsOf: url!)
+//            cell.bookImg.image = UIImage(data: data!)
+//        } else {
+//            cell.bookImg.image = UIImage(named: "bookDefault")
+//        }
         return cell
     }
     
@@ -384,17 +398,32 @@ extension BookshelfViewController: UICollectionViewDelegate, UICollectionViewDat
             // hide popUp
             animateOut()
             // show alert
-            let alertVC = UIAlertController(title: "", message: "This book will be returned at \(self.currentBooks[indexPath.row].date_return)", preferredStyle: .alert)
+            
+            print(self.currentBooks[indexPath.row].date_return)
+            
+            // format date to display for example 6 Mar 2019
+            let inFormatter = DateFormatter()
+            inFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+            inFormatter.dateFormat = "Y-MM-dd hh:mm:ss"
+            
+            let outFormatter = DateFormatter()
+            outFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+            outFormatter.dateFormat = "MMM d, Y"
+            
+            let inStr = self.currentBooks[indexPath.row].date_return
+            let date = inFormatter.date(from: inStr)!
+            let outStr = outFormatter.string(from: date)
+            
+            let alertVC = UIAlertController(title: "", message: "This book will be returned at \(outStr)", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         } else {
             // show popUp
             self.animateIn()
-//            self.navigationController?.tabBarController?.tabBar.backgroundColor = .clear
             
             self.selectBookIndex = indexPath.row
-            
             self.indexPath = indexPath
+            
             if getEmailToCheck != "" {
                 self.selectedBook = currentBooks[indexPath.row]
                 chooseBooks.append(currentBooks[indexPath.row])
