@@ -10,7 +10,6 @@
 		06BFAE44221E5368004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		06BFAE46221E53CB004DE54D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		1DAB3AE12232450F006B583E /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAB3AE02232450F006B583E /* Kingfisher.framework */; };
-		1DAB3AE322325523006B583E /* YouTubePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAB3AE222325523006B583E /* YouTubePlayer.framework */; };
 		5B04525322252541002AF8B0 /* apiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04525222252541002AF8B0 /* apiService.swift */; };
 		5B0452582225266F002AF8B0 /* ConstansBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0452572225266F002AF8B0 /* ConstansBook.swift */; };
 		5B4EF485221282B80034B61A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4EF484221282B80034B61A /* HomeViewController.swift */; };
@@ -86,7 +85,6 @@
 				5B6F00D8221C1C5F00A840F7 /* SwiftGif.framework in Frameworks */,
 				5B6F00D9221C1C5F00A840F7 /* SwiftyJSON.framework in Frameworks */,
 				1DAB3AE12232450F006B583E /* Kingfisher.framework in Frameworks */,
-				1DAB3AE322325523006B583E /* YouTubePlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +269,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ImageViewer.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/YouTubePlayer.framework",
 			);
 			outputFileListPaths = (
 			);
