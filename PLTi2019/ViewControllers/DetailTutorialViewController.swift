@@ -37,11 +37,6 @@ class DetailTutorialViewController: UIViewController {
         self.tutVideo.load(withVideoId: "9lHaLIQhrdY")
     }
     
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = false
-//    }
-    
     @objc func turnBack(_ sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
     }

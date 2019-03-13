@@ -19,7 +19,6 @@ struct DataItem {
 }
 
 class Image3dPrinterViewController: UIViewController {
-    let imageNames = ["img1","img2","img3","img4","img5", "img6"]
     var currentImage = 0
     
     @IBOutlet weak var collectionCV: UICollectionView!
@@ -43,15 +42,22 @@ class Image3dPrinterViewController: UIViewController {
             let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
             
             if url != nil {
-                let data = try? Data(contentsOf: url!)
-                let image = UIImage(data: data!)
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 500, height: 370))
                 
-                galleryItem = GalleryItem.image { $0(image) }
-                items.append(DataItem(imageView: largeImg, galleryItem: galleryItem))
+                KingfisherManager.shared.retrieveImage(with: url!, options: [.alsoPrefetchToMemory, .processor(processor)], progressBlock: nil) { result in
+                    switch result {
+                    case .success(let value):
+                        galleryItem = GalleryItem.image { $0(value.image) }
+                        self.items.append(DataItem(imageView: self.largeImg, galleryItem: galleryItem))
+                        
+                        print("Image: \(value.image). Got from: \(value.cacheType)")
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+             
             }
         }
-            
-       
     }
     
     func setupView() {
@@ -87,6 +93,32 @@ class Image3dPrinterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // func resizeImage
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }
 
 //MARK: Extention collection view
@@ -97,8 +129,6 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! Collection3dViewCell
-
-//        cell.image3d.image = UIImage(named: self.imageNames[indexPath.row])
         
         var imgName = String(indexPath.row + 5)
         
@@ -106,9 +136,19 @@ extension Image3dPrinterViewController: UICollectionViewDataSource, UICollection
             imgName = "0" + imgName
         }
         
-        let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).JPG")
-        cell.image3d.kf.setImage(with: url)
+
+        let url = URL(string: "http://192.168.0.12/api/app/webroot/img/\(imgName).png")
+        let size = CGSize(width: 93.75, height: 93.75)
         
+        cell.image3d.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .processor(DownsamplingImageProcessor(size: size)),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
+            ])
+        print(cell.frame.size)
         return cell
     }
     
@@ -199,3 +239,4 @@ class FLSomeAnimatedImage: UIImageView {
 // Extend ImageBaseController so we get all the functionality for free
 class AnimatedViewController: ItemBaseController<FLSomeAnimatedImage> {
 }
+

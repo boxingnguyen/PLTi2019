@@ -58,10 +58,7 @@ class BookshelfViewController: UIViewController, UISearchBarDelegate {
         datePicker.setValue(UIColor.red, forKey:"textColor")
         datePicker.tintColor = .white
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func dismissKeyboard() {

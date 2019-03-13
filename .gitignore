@@ -68,3 +68,4 @@ fastlane/test_output
 
 PLTi2019.xcodeproj/xcshareddata/
 PLTi2019.xcodeproj/project.pbxproj
+.DS_Store
