@@ -741,6 +741,14 @@
                                     <action selector="finishTour:" destination="c8q-m0-4zF" eventType="touchUpInside" id="kZv-ia-Qw9"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8Q-Rv-gcF">
+                                <rect key="frame" x="82" y="83" width="250" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="HRW-1w-eeF"/>
+                                    <constraint firstAttribute="height" constant="250" id="M5A-dh-8nk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -756,16 +764,19 @@
                             <constraint firstItem="pRg-S5-HdM" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="130" id="d38-ec-j69"/>
                             <constraint firstItem="RKI-yc-x3g" firstAttribute="top" secondItem="nAh-xx-Xgc" secondAttribute="bottom" constant="20" id="d4w-9J-fKH"/>
                             <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="wRW-iM-xRi" secondAttribute="trailing" constant="79" id="ejC-Ex-5Mb"/>
+                            <constraint firstItem="c8Q-Rv-gcF" firstAttribute="centerX" secondItem="Pwc-fX-IK7" secondAttribute="centerX" id="fJ7-Ie-1tm"/>
                             <constraint firstItem="Pwc-fX-IK7" firstAttribute="bottom" secondItem="nAh-xx-Xgc" secondAttribute="bottom" constant="427" id="gGI-Sr-e1u"/>
                             <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="RKI-yc-x3g" secondAttribute="trailing" constant="20" id="hmc-iO-yRt"/>
                             <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="lOu-nb-tid" secondAttribute="trailing" constant="79" id="ocf-AH-4Yk"/>
                             <constraint firstItem="Pwc-fX-IK7" firstAttribute="trailing" secondItem="nAh-xx-Xgc" secondAttribute="trailing" constant="20" id="olu-pd-mdm"/>
+                            <constraint firstItem="c8Q-Rv-gcF" firstAttribute="top" secondItem="Pwc-fX-IK7" secondAttribute="top" constant="19" id="pSp-28-aeU"/>
                             <constraint firstItem="wRW-iM-xRi" firstAttribute="leading" secondItem="Pwc-fX-IK7" secondAttribute="leading" constant="90" id="sBH-Ny-x1q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pwc-fX-IK7"/>
                     </view>
                     <navigationItem key="navigationItem" title="Let's go around TechLab" id="UGb-91-yMM"/>
                     <connections>
+                        <outlet property="animation" destination="c8Q-Rv-gcF" id="Rv1-mn-HJm"/>
                         <outlet property="buttonBook" destination="wRW-iM-xRi" id="BD3-wt-rnu"/>
                         <outlet property="buttonPrinter" destination="lOu-nb-tid" id="DQd-bh-Aai"/>
                         <outlet property="finishTourBtn" destination="pRg-S5-HdM" id="jTo-CO-mdY"/>
